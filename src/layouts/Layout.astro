@@ -33,9 +33,11 @@ const seoData = {
 };
 
 const socialLinks = layoutData.footer.sections
+	.filter(section => section.type === "social")
 	.flatMap(section => section.links ?? [])
-	.map(link => link.href)
-	.filter(href => href.startsWith("https://"));
+	.map(link => link.href);
+
+const organizerSameAs = [...[layoutData.eventLD.organizer.sameAs].flat(), ...socialLinks];
 
 const publisher = {
 	"@type": "Organization",
@@ -62,7 +64,7 @@ const structuredData = [
 		"@context": "https://schema.org",
 		...publisher,
 		logo: new URL("/2026/favicon.svg", siteURL).href,
-		sameAs: socialLinks
+		sameAs: organizerSameAs
 	}
 ];
 ---
