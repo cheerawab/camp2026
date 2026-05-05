@@ -27,12 +27,7 @@ const breadcrumbSchema = {
 };
 ---
 
-<Layout
-	title={pageMeta.title}
-	description={pageMeta.description}
-	ogImageAlt={pageMeta.ogImageAlt}
-	additionalStructuredData={breadcrumbSchema}
->
+<Layout title={pageMeta.title} description={pageMeta.description} additionalStructuredData={breadcrumbSchema}>
 	<EventsHeld />
 	<Team />
 	<OrganizerBrands />

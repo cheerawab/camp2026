@@ -11,8 +11,6 @@ import FAQ from "@/components/FAQ.astro";
 import OrganizersBrands from "@/components/OrganizerBrands.astro";
 import homeData from "@/data/home.json";
 
-const { pageMeta } = homeData;
-
 const stripMarkdown = (text: string) => text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
 
 const faqSchema = {
@@ -29,12 +27,7 @@ const faqSchema = {
 };
 ---
 
-<Layout
-	title={pageMeta.title}
-	description={pageMeta.description}
-	ogImageAlt={pageMeta.ogImageAlt}
-	additionalStructuredData={faqSchema}
->
+<Layout additionalStructuredData={faqSchema}>
 	<Hero />
 	<BrandMarquee />
 	<MasterClass />
