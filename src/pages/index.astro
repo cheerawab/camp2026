@@ -10,8 +10,7 @@ import RegistrationInfo from "@/components/RegistrationInfo.astro";
 import FAQ from "@/components/FAQ.astro";
 import OrganizersBrands from "@/components/OrganizerBrands.astro";
 import homeData from "@/data/home.json";
-
-const stripMarkdown = (text: string) => text.replace(/\[([^\]]+)\]\([^)]+\)/g, "$1");
+import { markdownToPlainText } from "@/utils/markdown";
 
 const faqSchema = {
 	"@context": "https://schema.org",
@@ -21,7 +20,7 @@ const faqSchema = {
 		name: item.question,
 		acceptedAnswer: {
 			"@type": "Answer",
-			text: stripMarkdown(item.answer)
+			text: markdownToPlainText(item.answer)
 		}
 	}))
 };
