@@ -10,10 +10,22 @@ type MasterClassGroup = MasterClassItem & {
 	speakers: MasterClassItem[];
 };
 
+const masterClassGroupFields = ["kicker", "accent", "summary", "outcome", "duration"] as const;
+const getMasterClassGroupField = (masterClass: MasterClassItem | MasterClassGroup, field: (typeof masterClassGroupFields)[number]) => (masterClass as Record<string, unknown>)[field];
+const serializeMasterClassGroupField = (value: unknown) => JSON.stringify(value);
+
 const groupedMasterClasses = masterClasses.reduce<MasterClassGroup[]>((groups, masterClass) => {
 	const existingGroup = groups.find(group => group.title === masterClass.title);
 
 	if (existingGroup) {
+		const mismatchedField = masterClassGroupFields.find(
+			field => serializeMasterClassGroupField(getMasterClassGroupField(existingGroup, field)) !== serializeMasterClassGroupField(getMasterClassGroupField(masterClass, field))
+		);
+
+		if (mismatchedField) {
+			throw new Error(`MasterClassGroup/title "${masterClass.title}" has mismatched "${mismatchedField}" content; refusing to merge speakers because course-level copy would be dropped.`);
+		}
+
 		existingGroup.speakers.push(masterClass);
 		return groups;
 	}
@@ -165,7 +177,11 @@ const getMasterImage = (masterClass: MasterClassItem) => {
 									<div class="course-slide__content">
 										<div class="course-slide__course">
 											<h3 class="course-slide__title">{masterClass.title}</h3>
-											<p class="course-slide__summary">{masterClass.summary.join("")}</p>
+											<p class="course-slide__summary">
+												{masterClass.summary.map(item => (
+													<span class="course-slide__summary-line">{item}</span>
+												))}
+											</p>
 											<p class="course-slide__outcome">{masterClass.outcome}</p>
 										</div>
 
@@ -916,6 +932,10 @@ const getMasterImage = (masterClass: MasterClassItem) => {
 		line-height: 1.24;
 		letter-spacing: 0;
 		text-wrap: pretty;
+	}
+
+	.course-slide__summary-line {
+		display: block;
 	}
 
 	.course-slide__outcome {
