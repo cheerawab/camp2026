@@ -31,23 +31,20 @@ const seoData = {
 	robots: noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"
 };
 
-const socialLinks = layoutData.footer.sections
-	.filter(section => section.type === "social")
-	.flatMap(section => section.links ?? [])
-	.map(link => link.href);
-
-const organizerSameAs = [...[layoutData.eventLD.organizer.sameAs].flat(), ...socialLinks];
-
 const publisher = {
 	"@type": "Organization",
-	name: "SITCON 學生計算機年會",
-	url: "https://sitcon.org"
+	name: layoutData.organization.name,
+	url: layoutData.organization.url
 };
 
 const structuredData = [
 	{
 		...layoutData.eventLD,
 		image: [seoData.ogImage],
+		organizer: {
+			...layoutData.eventLD.organizer,
+			sameAs: layoutData.organization.sameAs
+		},
 		url: homeURL.href
 	},
 	{
@@ -63,7 +60,7 @@ const structuredData = [
 		"@context": "https://schema.org",
 		...publisher,
 		logo: new URL("/2026/favicon.svg", siteURL).href,
-		sameAs: organizerSameAs
+		sameAs: layoutData.organization.sameAs
 	}
 ];
 ---

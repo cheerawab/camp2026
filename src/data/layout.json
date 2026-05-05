@@ -130,6 +130,19 @@
 			}
 		]
 	},
+	"organization": {
+		"name": "SITCON 學生計算機年會",
+		"url": "https://sitcon.org",
+		"sameAs": [
+			"https://zh.wikipedia.org/wiki/學生計算機年會",
+			"https://www.instagram.com/sitcon.tw",
+			"https://www.threads.com/@sitcon.tw",
+			"https://www.facebook.com/SITCONtw/",
+			"https://www.youtube.com/c/SITCONArchive",
+			"https://www.flickr.com/photos/sitcon/albums/",
+			"https://telegram.me/SITCONgeneral"
+		]
+	},
 	"eventLD": {
 		"@context": "https://schema.org",
 		"@type": "EducationEvent",
@@ -158,8 +171,7 @@
 		"organizer": {
 			"@type": "Organization",
 			"name": "SITCON 學生計算機年會",
-			"url": "https://sitcon.org",
-			"sameAs": "https://zh.wikipedia.org/wiki/學生計算機年會"
+			"url": "https://sitcon.org"
 		},
 		"offers": [
 			{
