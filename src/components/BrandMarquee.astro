@@ -24,11 +24,11 @@ const marqueeItems = Array.from({ length: brandMarquee.repeatItems }, (_, index)
 ---
 
 <section class="brand-marquee" aria-label={brandMarquee.ariaLabel}>
-	<div class="brand-marquee__viewport" aria-hidden="true">
+	<div class="brand-marquee__viewport">
 		<div class="brand-marquee__track" data-brand-marquee-track>
 			{
 				[0, 1].map(groupIndex => (
-					<div class="brand-marquee__group" data-marquee-group={groupIndex}>
+					<div class="brand-marquee__group" data-marquee-group={groupIndex} aria-hidden={groupIndex > 0 ? "true" : undefined}>
 						{marqueeItems.map(brand => (
 							<img class="brand-marquee__logo" src={brand.src} width={brand.width} height={brand.height} alt={brand.alt} loading="lazy" decoding="async" />
 						))}

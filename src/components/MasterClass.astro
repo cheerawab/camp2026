@@ -82,10 +82,17 @@ const getMasterImage = (masterClass: MasterClassItem) => {
 			</div>
 		</div>
 
-		<div class="master-carousel" aria-label="主題講師與課程介紹" data-master-carousel>
-			<div class="master-carousel__viewport">
+		<div class="master-carousel" role="region" aria-label="主題講師與課程介紹" data-master-carousel>
+			<div class="master-carousel__viewport" tabindex="0">
 				<div class="master-carousel__track" data-master-carousel-track>
-					<div class="master-carousel__slide master-carousel__slide--topics" data-master-carousel-slide aria-hidden="false">
+					<div
+						id="master-carousel-panel-overview"
+						class="master-carousel__slide master-carousel__slide--topics"
+						role="tabpanel"
+						aria-labelledby="master-carousel-tab-overview"
+						data-master-carousel-slide
+						aria-hidden="false"
+					>
 						<div class="master-class__topics" aria-label={masterClassSection.deckAriaLabel}>
 							{
 								visibleMasterClasses.map(masterClass => {
@@ -136,9 +143,16 @@ const getMasterImage = (masterClass: MasterClassItem) => {
 						</div>
 					</div>
 					{
-						visibleMasterClasses.map(masterClass => {
+						visibleMasterClasses.map((masterClass, index) => {
 							return (
-								<article class:list={["master-carousel__slide", "course-slide", `course-slide--${masterClass.accent}`]} data-master-carousel-slide aria-hidden="true">
+								<article
+									id={`master-carousel-panel-${index + 1}`}
+									class:list={["master-carousel__slide", "course-slide", `course-slide--${masterClass.accent}`]}
+									role="tabpanel"
+									aria-labelledby={`master-carousel-tab-${index + 1}`}
+									data-master-carousel-slide
+									aria-hidden="true"
+								>
 									<figure class:list={["course-slide__media", { "course-slide__media--duo": masterClass.speakers.length > 1 }]}>
 										{masterClass.speakers.map(speaker => {
 											const image = getMasterImage(speaker);
@@ -213,11 +227,13 @@ const getMasterImage = (masterClass: MasterClassItem) => {
 				<div class="master-carousel__tabs" role="tablist" aria-label="選擇主題">
 					<span class="master-carousel__tab-indicator" data-master-carousel-tab-indicator aria-hidden="true"></span>
 					<button
+						id="master-carousel-tab-overview"
 						class:list={["master-carousel__tab", "master-carousel__tab--active"]}
 						type="button"
 						role="tab"
 						aria-label="顯示講師總覽"
 						aria-selected="true"
+						aria-controls="master-carousel-panel-overview"
 						data-master-carousel-tab
 						data-master-carousel-index={0}
 					>
@@ -226,11 +242,13 @@ const getMasterImage = (masterClass: MasterClassItem) => {
 					{
 						visibleMasterClasses.map((masterClass, index) => (
 							<button
+								id={`master-carousel-tab-${index + 1}`}
 								class="master-carousel__tab"
 								type="button"
 								role="tab"
 								aria-label={`顯示${masterClass.title}`}
 								aria-selected="false"
+								aria-controls={`master-carousel-panel-${index + 1}`}
 								data-master-carousel-tab
 								data-master-carousel-index={index + 1}
 							>

@@ -55,9 +55,9 @@ const videos = studentComment.video.map(video => {
 });
 ---
 
-<div class="bg-background relative overflow-hidden">
+<section class="bg-background relative overflow-hidden" aria-labelledby="student-comment-title">
 	<div class="site-container flex flex-col gap-20 py-4 sm:pt-32 sm:pb-16">
-		<h2 class="text-center text-[3rem] leading-[133%] font-bold text-balance">
+		<h2 id="student-comment-title" class="text-center text-[3rem] leading-[133%] font-bold text-balance">
 			{studentComment.sectionTitle}
 		</h2>
 
@@ -120,7 +120,7 @@ const videos = studentComment.video.map(video => {
 								<Image src={v.cover} alt="" class="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
 
 								<div class="from-foreground relative z-10 flex h-full w-full items-center justify-center rounded-4xl bg-linear-to-t from-0% to-transparent to-30%">
-									<IcRoundPlayCircle class="text-background bg-foreground/50 rounded-full text-5xl" />
+									<IcRoundPlayCircle class="text-background bg-foreground/50 rounded-full text-5xl" aria-hidden="true" />
 								</div>
 
 								<p class="text-background absolute bottom-3 left-0 z-10 w-full text-center text-3xl font-bold">{v.label}</p>
@@ -132,7 +132,7 @@ const videos = studentComment.video.map(video => {
 		</div>
 	</div>
 
-	<dialog id="comment-dialog" class="m-auto w-full max-w-3xl rounded-4xl">
+	<dialog id="comment-dialog" class="m-auto w-full max-w-3xl rounded-4xl" aria-label="歷年回顧影片播放器">
 		<div class="aspect-video w-full">
 			<iframe
 				id="comment-iframe"
@@ -147,7 +147,7 @@ const videos = studentComment.video.map(video => {
 		</div>
 	</dialog>
 
-	<dialog id="student-comment-dialog" class="bg-foreground text-background m-auto w-[calc(100%-2rem)] max-w-2xl rounded-4xl p-0 backdrop:bg-black/50">
+	<dialog id="student-comment-dialog" class="bg-foreground text-background m-auto w-[calc(100%-2rem)] max-w-2xl rounded-4xl p-0 backdrop:bg-black/50" aria-labelledby="student-comment-dialog-name">
 		<div id="student-comment-dialog-header" class="bg-blue flex items-center justify-between rounded-t-4xl p-5">
 			<div class="flex min-w-0 items-center gap-4">
 				<img id="student-comment-dialog-avatar" class="size-12 shrink-0 rounded-full object-cover" alt="" loading="lazy" decoding="async" />
@@ -159,7 +159,7 @@ const videos = studentComment.video.map(video => {
 
 		<div id="student-comment-dialog-text" class="prose prose-invert max-w-none p-6"></div>
 	</dialog>
-</div>
+</section>
 
 <style>
 	@keyframes marquee {

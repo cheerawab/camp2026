@@ -66,8 +66,8 @@ const heroPhotoWallColumns = hero.photoWallColumns;
 </script>
 
 <section data-hero-intro aria-label={heroIntro.ariaLabel}>
-	<span class="hero-intro__curtain hero-intro__curtain--top" data-hero-intro-curtain-top></span>
-	<span class="hero-intro__curtain hero-intro__curtain--bottom" data-hero-intro-curtain-bottom></span>
+	<span class="hero-intro__curtain hero-intro__curtain--top" data-hero-intro-curtain-top aria-hidden="true"></span>
+	<span class="hero-intro__curtain hero-intro__curtain--bottom" data-hero-intro-curtain-bottom aria-hidden="true"></span>
 	<div class="hero-intro__stage">
 		<p class="hero-intro__question" data-hero-intro-question aria-live="polite">
 			<span>{heroIntro.questionPrefix}</span>

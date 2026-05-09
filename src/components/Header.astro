@@ -32,13 +32,14 @@ const { header } = layoutData;
 			data-mobile-close-label={header.mobileMenu.closeLabel}
 			aria-label={header.mobileMenu.openLabel}
 			aria-expanded="false"
+			aria-controls="site-header-mobile-panel"
 		>
 			<span class="site-header__mobile-icon" aria-hidden="true">
 				<Menu class="site-header__mobile-icon-glyph site-header__mobile-icon-glyph--menu" width={30} height={30} stroke-width={3} />
 				<X class="site-header__mobile-icon-glyph site-header__mobile-icon-glyph--close" width={30} height={30} stroke-width={3} />
 			</span>
 		</summary>
-		<div class="site-header__mobile-panel" data-mobile-panel>
+		<div id="site-header-mobile-panel" class="site-header__mobile-panel" data-mobile-panel>
 			<nav class="site-header__mobile-nav" aria-label={header.navAriaLabel}>
 				{
 					header.navItems.map(item => (

@@ -33,7 +33,7 @@ type FooterIcon = keyof typeof iconMap;
 			{
 				footer.sections.map(section => (
 					<div class="flex flex-col">
-						<h1 class:list={["label-base", `label-${section.variant}`]}>{section.title}</h1>
+						<h2 class:list={["label-base", `label-${section.variant}`]}>{section.title}</h2>
 
 						{section.type === "contact" && (
 							<div class="mb-5">
@@ -76,7 +76,7 @@ type FooterIcon = keyof typeof iconMap;
 
 									return Icon ? (
 										<a href={link.href} class:list={["icon-link", `link-hover-${section.variant}`]} aria-label={link.label}>
-											<Icon class="h-6 w-6" />
+											<Icon class="h-6 w-6" aria-hidden="true" />
 										</a>
 									) : null;
 								})}

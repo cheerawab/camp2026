@@ -39,10 +39,10 @@ const { aboutSitconCamp } = homeData;
 const stats = aboutSitconCamp.stats as Stat[];
 ---
 
-<section class="section-cream">
+<section class="section-cream" aria-labelledby="about-sitcon-camp-title">
 	<div class="site-container flex flex-col items-center">
 		<header class="mb-16 text-center">
-			<h2 class="mb-8 text-4xl font-bold tracking-tight text-balance text-black min-[33.125rem]:text-5xl">{aboutSitconCamp.title}</h2>
+			<h2 id="about-sitcon-camp-title" class="mb-8 text-4xl font-bold tracking-tight text-balance text-black min-[33.125rem]:text-5xl">{aboutSitconCamp.title}</h2>
 			<p class="text-foreground/70 mx-auto max-w-4xl text-lg leading-relaxed whitespace-pre-line min-[33.125rem]:text-xl">
 				{aboutSitconCamp.description}
 			</p>
@@ -51,13 +51,14 @@ const stats = aboutSitconCamp.stats as Stat[];
 		<div class="mb-8 grid w-full grid-cols-1 gap-4 min-[33.125rem]:grid-cols-2 min-[33.125rem]:gap-6 min-[70.25rem]:grid-cols-4 min-[70.25rem]:gap-6">
 			{
 				stats.map(stat => (
-					<div class="card-stat @container">
+					<article class="card-stat @container">
 						<Image
 							src={imgMap[stat.img]}
-							alt={stat.type === "single" ? stat.label || "社群數據" : "社群數據"}
+							alt=""
 							class="absolute inset-0 h-full w-full object-cover object-[50%_0%] opacity-70"
 							loading="lazy"
 							decoding="async"
+							aria-hidden="true"
 						/>
 						<div class="pointer-events-none absolute inset-0 bg-linear-to-t from-black/90 to-transparent to-60%" />
 
@@ -79,7 +80,7 @@ const stats = aboutSitconCamp.stats as Stat[];
 								</div>
 							)}
 						</div>
-					</div>
+					</article>
 				))
 			}
 		</div>
