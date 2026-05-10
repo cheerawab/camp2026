@@ -141,6 +141,33 @@ const getEvent = (eventId: string): ScheduleEvent => {
 		const daysTrack = document.querySelector<HTMLElement>("[data-schedule-days-track]");
 		const desktopDragQuery = window.matchMedia("(min-width: 42.001rem)");
 		let draggedDay: HTMLElement | null = null;
+		let lastInsertKey = "";
+
+		const flipAnimate = (moveFn: () => void) => {
+			if (!daysTrack) return;
+			const days = Array.from(daysTrack.querySelectorAll<HTMLElement>("[data-schedule-day]"));
+			const firsts = new Map(days.map(d => [d, d.getBoundingClientRect()]));
+
+			moveFn();
+
+			days.forEach(day => {
+				if (day === draggedDay) return;
+				const first = firsts.get(day)!;
+				const last = day.getBoundingClientRect();
+				const dx = first.left - last.left;
+				if (Math.abs(dx) < 1) return;
+
+				day.style.transition = "none";
+				day.style.transform = `translateX(${dx}px)`;
+				day.offsetHeight;
+				day.style.transition = "transform 420ms cubic-bezier(0.34, 1.56, 0.64, 1)";
+				day.style.transform = "";
+
+				const cleanup = () => { day.style.transform = ""; day.style.transition = ""; };
+				day.addEventListener("transitionend", cleanup, { once: true });
+				day.addEventListener("transitioncancel", cleanup, { once: true });
+			});
+		};
 
 		const isMovableDay = (day: HTMLElement | null): day is HTMLElement => day?.dataset.scheduleCanMove === "true";
 		const setDragEnabled = () => {
@@ -226,18 +253,13 @@ const getEvent = (eventId: string): ScheduleEvent => {
 
 				const targetRect = targetDay.getBoundingClientRect();
 				const shouldPlaceAfter = event.clientX > targetRect.left + targetRect.width / 2;
-				targetDay.classList.toggle("is-drop-before", !shouldPlaceAfter);
-				targetDay.classList.toggle("is-drop-after", shouldPlaceAfter);
-				daysTrack.insertBefore(draggedDay, shouldPlaceAfter ? targetDay.nextSibling : targetDay);
-			},
-			{ signal }
-		);
+				const insertKey = `${targetDay.dataset.scheduleDayId}-${shouldPlaceAfter}`;
+				if (insertKey === lastInsertKey) return;
+				lastInsertKey = insertKey;
 
-		daysTrack?.addEventListener(
-			"dragleave",
-			event => {
-				const day = getMovableInsertTarget(event.target);
-				day?.classList.remove("is-drop-before", "is-drop-after");
+				flipAnimate(() => {
+					daysTrack!.insertBefore(draggedDay!, shouldPlaceAfter ? targetDay.nextSibling : targetDay);
+				});
 			},
 			{ signal }
 		);
@@ -256,9 +278,7 @@ const getEvent = (eventId: string): ScheduleEvent => {
 			() => {
 				draggedDay?.classList.remove("is-dragging");
 				draggedDay = null;
-				daysTrack.querySelectorAll<HTMLElement>("[data-schedule-day]").forEach(day => {
-					day.classList.remove("is-drop-before", "is-drop-after");
-				});
+				lastInsertKey = "";
 			},
 			{ signal }
 		);
@@ -393,20 +413,6 @@ const getEvent = (eventId: string): ScheduleEvent => {
 	.schedule-day.is-dragging {
 		opacity: 0.62;
 		transform: scale(0.985) rotate(1deg);
-	}
-
-	.schedule-day.is-drop-before {
-		box-shadow:
-			-0.35rem 0 0 0 var(--color-background),
-			-0.6rem 0 0 0 var(--day-accent),
-			0.28rem 0.28rem 0 0 var(--day-accent);
-	}
-
-	.schedule-day.is-drop-after {
-		box-shadow:
-			0.35rem 0 0 0 var(--color-background),
-			0.6rem 0 0 0 var(--day-accent),
-			0.28rem 0.28rem 0 0 var(--day-accent);
 	}
 
 	.schedule-day--green {
