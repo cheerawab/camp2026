@@ -105,90 +105,92 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 ---
 
 <section class="schedule-page" aria-labelledby="schedule-title">
-	<div class="site-container">
-		<header class="schedule-hero">
-			<p class="schedule-hero__eyebrow">SITCON Camp 2026</p>
-			<h1 id="schedule-title" class="schedule-hero__title">{scheduleMeta.title}</h1>
-			<p class="schedule-hero__lead">{scheduleMeta.description}</p>
-		</header>
+	<div class="schedule-page__content" data-schedule-page-content>
+		<div class="site-container">
+			<header class="schedule-hero">
+				<p class="schedule-hero__eyebrow">SITCON Camp 2026</p>
+				<h1 id="schedule-title" class="schedule-hero__title">{scheduleMeta.title}</h1>
+				<p class="schedule-hero__lead">{scheduleMeta.description}</p>
+			</header>
 
-		<div class="schedule-notes" aria-label="課表公告">
-			<p class="schedule-note">{scheduleMeta.note}</p>
-		</div>
-
-		<div class="schedule-view-switch" data-schedule-view-switch role="group" aria-label="手機課表檢視切換">
-			<button type="button" class="schedule-view-switch__option" data-schedule-view-option="scroll" aria-pressed="false">橫向</button>
-			<button type="button" class="schedule-view-switch__option is-active" data-schedule-view-option="stacked" aria-pressed="true">直向</button>
-		</div>
-
-		<div class="schedule-board" aria-label="五天活動日程輪廓">
-			<div class="schedule-time-rail" aria-hidden="true">
-				<div class="schedule-time-rail__spacer"></div>
-				{schedulePeriods.map(period => <div class="schedule-time-rail__period">{period}</div>)}
+			<div class="schedule-notes" aria-label="課表公告">
+				<p class="schedule-note">{scheduleMeta.note}</p>
 			</div>
 
-			<div class="schedule-days-track" data-schedule-days-track>
-				{
-					scheduleDays.map(day => (
-						<article class:list={["schedule-day", dayAccentClassMap[day.type]]}>
-							<header class="schedule-day__header">
-								<div class="schedule-day__header-copy">
-									<h2 class="schedule-day__title">{day.title}</h2>
-									<p class="schedule-day__subtitle">{day.subtitle}</p>
-								</div>
-							</header>
+			<div class="schedule-view-switch" data-schedule-view-switch role="group" aria-label="手機課表檢視切換">
+				<button type="button" class="schedule-view-switch__option" data-schedule-view-option="scroll" aria-pressed="false">橫向</button>
+				<button type="button" class="schedule-view-switch__option is-active" data-schedule-view-option="stacked" aria-pressed="true">直向</button>
+			</div>
 
-							<div class="schedule-day__blocks">
-								{getRenderableBlocks(day).map(block => {
-									const eventIds = block.eventIds;
+			<div class="schedule-board" aria-label="五天活動日程輪廓">
+				<div class="schedule-time-rail" aria-hidden="true">
+					<div class="schedule-time-rail__spacer"></div>
+					{schedulePeriods.map(period => <div class="schedule-time-rail__period">{period}</div>)}
+				</div>
 
-									return (
-										<section
-											class:list={[
-												"schedule-block",
-												{
-													"schedule-block--empty": eventIds.length === 0,
-													"schedule-block--spanning": block.span > 1,
-													"schedule-block--featured": block.hasDesign === true
-												}
-											]}
-											style={`--schedule-block-row:${block.rowStart}; --schedule-block-span:${block.span};`}
-											aria-label={`${day.title}${block.label}活動`}
-										>
-											<h3 class="schedule-block__period">{block.label}</h3>
-											{eventIds.length > 0 ? (
-												<div class="schedule-block__events">
-													{eventIds.map(eventId => {
-														const event = getEvent(eventId);
+				<div class="schedule-days-track" data-schedule-days-track>
+					{
+						scheduleDays.map(day => (
+							<article class:list={["schedule-day", dayAccentClassMap[day.type]]}>
+								<header class="schedule-day__header">
+									<div class="schedule-day__header-copy">
+										<h2 class="schedule-day__title">{day.title}</h2>
+										<p class="schedule-day__subtitle">{day.subtitle}</p>
+									</div>
+								</header>
 
-														return (
-															<button
-																type="button"
-																class:list={["schedule-event", { "schedule-event--featured": block.hasDesign === true }]}
-																data-schedule-event-trigger={event.id}
-																aria-label={`查看${event.name}介紹`}
-															>
-																<div class="schedule-event__body">
-																	<div class="schedule-event__content">
-																		<span class:list={["schedule-event__badge", categoryClassMap[event.category]]}>{event.category}</span>
-																		<span class="schedule-event__name">{event.name}</span>
-																		<span class="schedule-event__summary">{event.summary}</span>
+								<div class="schedule-day__blocks">
+									{getRenderableBlocks(day).map(block => {
+										const eventIds = block.eventIds;
+
+										return (
+											<section
+												class:list={[
+													"schedule-block",
+													{
+														"schedule-block--empty": eventIds.length === 0,
+														"schedule-block--spanning": block.span > 1,
+														"schedule-block--featured": block.hasDesign === true
+													}
+												]}
+												style={`--schedule-block-row:${block.rowStart}; --schedule-block-span:${block.span};`}
+												aria-label={`${day.title}${block.label}活動`}
+											>
+												<h3 class="schedule-block__period">{block.label}</h3>
+												{eventIds.length > 0 ? (
+													<div class="schedule-block__events">
+														{eventIds.map(eventId => {
+															const event = getEvent(eventId);
+
+															return (
+																<button
+																	type="button"
+																	class:list={["schedule-event", { "schedule-event--featured": block.hasDesign === true }]}
+																	data-schedule-event-trigger={event.id}
+																	aria-label={`查看${event.name}介紹`}
+																>
+																	<div class="schedule-event__body">
+																		<div class="schedule-event__content">
+																			<span class:list={["schedule-event__badge", categoryClassMap[event.category]]}>{event.category}</span>
+																			<span class="schedule-event__name">{event.name}</span>
+																			<span class="schedule-event__summary">{event.summary}</span>
+																		</div>
 																	</div>
-																</div>
-															</button>
-														);
-													})}
-												</div>
-											) : (
-												<p class="schedule-block__empty-text">...</p>
-											)}
-										</section>
-									);
-								})}
-							</div>
-						</article>
-					))
-				}
+																</button>
+															);
+														})}
+													</div>
+												) : (
+													<p class="schedule-block__empty-text">...</p>
+												)}
+											</section>
+										);
+									})}
+								</div>
+							</article>
+						))
+					}
+				</div>
 			</div>
 		</div>
 	</div>
@@ -202,7 +204,7 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 					</div>
 					<div class="schedule-dialog__content">
 						<span class:list={["schedule-dialog__badge", categoryClassMap[event.category]]}>{event.category}</span>
-						<h2 id={`schedule-dialog-title-${event.id}`} class="schedule-dialog__title">
+						<h2 id={`schedule-dialog-title-${event.id}`} class="schedule-dialog__title" tabindex="-1">
 							{event.name}
 						</h2>
 						<p class="schedule-dialog__description">{event.description}</p>
@@ -223,12 +225,53 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 		document.addEventListener("astro:before-swap", () => ac.abort(), { once: true });
 
 		const dialogs = new Map(Array.from(document.querySelectorAll<HTMLElement>("[data-schedule-dialog]")).map(dialog => [dialog.dataset.scheduleDialog ?? "", dialog]));
+		const pageContent = document.querySelector<HTMLElement>("[data-schedule-page-content]");
 		const scheduleBoard = document.querySelector<HTMLElement>(".schedule-board");
 		const viewSwitch = document.querySelector<HTMLElement>("[data-schedule-view-switch]");
 		const viewOptions = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-schedule-view-option]"));
 		let activeDialog: HTMLElement | null = null;
 		let lastFocusedElement: HTMLElement | null = null;
 		let scrollPosition = 0;
+		const focusableSelector = [
+			'a[href]',
+			'button:not([disabled])',
+			'input:not([disabled]):not([type="hidden"])',
+			'select:not([disabled])',
+			'textarea:not([disabled])',
+			'[tabindex]:not([tabindex="-1"])'
+		].join(",");
+
+		const getFocusableElements = (dialog: HTMLElement) =>
+			Array.from(dialog.querySelectorAll<HTMLElement>(focusableSelector)).filter(element => !element.closest("[hidden]"));
+
+		const setPageContentInert = (isInert: boolean) => {
+			if (!pageContent) return;
+
+			const pageContentWithInert = pageContent as HTMLElement & { inert?: boolean };
+			if ("inert" in pageContentWithInert) {
+				pageContentWithInert.inert = isInert;
+			}
+			pageContent.toggleAttribute("inert", isInert);
+			if (isInert) {
+				pageContent.setAttribute("aria-hidden", "true");
+			} else {
+				pageContent.removeAttribute("aria-hidden");
+			}
+		};
+
+		const focusDialogTitle = (dialog: HTMLElement) => {
+			dialog.querySelector<HTMLElement>(`[id="schedule-dialog-title-${dialog.dataset.scheduleDialog ?? ""}"]`)?.focus({ preventScroll: true });
+		};
+
+		const restoreFocus = (dialog: HTMLElement | null) => {
+			const fallbackTrigger = dialog?.dataset.scheduleDialog
+				? document.querySelector<HTMLElement>(`[data-schedule-event-trigger="${dialog.dataset.scheduleDialog}"]`)
+				: null;
+			const target = lastFocusedElement && lastFocusedElement.isConnected && (!dialog || !dialog.contains(lastFocusedElement)) ? lastFocusedElement : fallbackTrigger;
+
+			target?.focus({ preventScroll: true });
+			lastFocusedElement = null;
+		};
 
 		const setScheduleView = (view: "scroll" | "stacked") => {
 			scheduleBoard?.classList.toggle("schedule-board--scroll", view === "scroll");
@@ -258,11 +301,11 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 			if (!dialog) return;
 
 			dialog.hidden = true;
+			setPageContentInert(false);
 			activeDialog = null;
 			document.documentElement.classList.remove("schedule-dialog-is-open");
 			window.scrollTo({ top: scrollPosition, left: 0, behavior: "instant" });
-			lastFocusedElement?.focus({ preventScroll: true });
-			lastFocusedElement = null;
+			restoreFocus(dialog);
 		};
 
 		const openDialog = (dialog: HTMLElement) => {
@@ -272,10 +315,14 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 
 			lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
 			scrollPosition = window.scrollY;
+			setPageContentInert(true);
 			document.documentElement.classList.add("schedule-dialog-is-open");
 			dialog.hidden = false;
 			activeDialog = dialog;
-			dialog.querySelector<HTMLElement>("[data-schedule-dialog-close]")?.focus({ preventScroll: true });
+			focusDialogTitle(dialog);
+			if (document.activeElement === lastFocusedElement) {
+				dialog.querySelector<HTMLElement>("[data-schedule-dialog-close]")?.focus({ preventScroll: true });
+			}
 		};
 
 		document.addEventListener(
@@ -306,7 +353,42 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 			event => {
 				if (event.key === "Escape" && activeDialog) {
 					closeDialog();
+					return;
 				}
+
+				if (event.key !== "Tab" || !activeDialog) {
+					return;
+				}
+
+				const focusables = getFocusableElements(activeDialog);
+
+				if (focusables.length === 0) {
+					event.preventDefault();
+					return;
+				}
+
+				const currentIndex = focusables.indexOf(document.activeElement as HTMLElement);
+				const nextIndex = event.shiftKey
+					? currentIndex <= 0
+						? focusables.length - 1
+						: currentIndex - 1
+					: currentIndex === -1 || currentIndex === focusables.length - 1
+						? 0
+						: currentIndex + 1;
+
+				event.preventDefault();
+				focusables[nextIndex]?.focus({ preventScroll: true });
+			},
+			{ signal }
+		);
+
+		document.addEventListener(
+			"focusin",
+			event => {
+				if (!activeDialog || !(event.target instanceof Node) || activeDialog.contains(event.target)) return;
+
+				const focusables = getFocusableElements(activeDialog);
+				(focusables[0] ?? activeDialog.querySelector<HTMLElement>("[data-schedule-dialog-close]"))?.focus({ preventScroll: true });
 			},
 			{ signal }
 		);
