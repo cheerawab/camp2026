@@ -62,7 +62,8 @@ export const scheduleEvents: ScheduleEvent[] = [
 		id: "icebreaking",
 		name: "不一樣的破冰活動",
 		summary: "透過互動與任務，找到一起學習、合作與卡關的夥伴。",
-		description: "破冰不只是為了記住名字，而是讓大家有機會交換想法、發現彼此的好奇心。透過輕鬆的互動與任務，學員會認識小隊夥伴，熟悉營隊氣氛。練習表達、合作與找到能一起學習、一起卡關的夥伴，與他們一起走進 SITCON Camp 。",
+		description:
+			"破冰不只是為了記住名字，而是讓大家有機會交換想法、發現彼此的好奇心。透過輕鬆的互動與任務，學員會認識小隊夥伴，熟悉營隊氣氛。練習表達、合作與找到能一起學習、一起卡關的夥伴，與他們一起走進 SITCON Camp 。",
 		category: "社群活動",
 		image: {
 			src: "/2026/images/schedule/icebreaking.svg",
@@ -120,7 +121,8 @@ export const scheduleEvents: ScheduleEvent[] = [
 		id: "learning-wrap",
 		name: "五天學習收束",
 		summary: "回顧五天的學習與實作，整理下一步想探索的方向。",
-		description: "到了最後一天，我們會一起回頭整理這幾天學到的概念、完成的嘗試與還想繼續追的問題。透過整理與反思，學員可以更清楚自己學到了什麼，也看見未來還想深入探索哪些方向。收束不是結束，而是幫你把營隊經驗轉成下一段學習的起點。",
+		description:
+			"到了最後一天，我們會一起回頭整理這幾天學到的概念、完成的嘗試與還想繼續追的問題。透過整理與反思，學員可以更清楚自己學到了什麼，也看見未來還想深入探索哪些方向。收束不是結束，而是幫你把營隊經驗轉成下一段學習的起點。",
 		category: "收束",
 		image: {
 			src: "/2026/images/schedule/learning-wrap.svg",
@@ -142,7 +144,8 @@ export const scheduleEvents: ScheduleEvent[] = [
 		id: "departure",
 		name: "賦歸",
 		summary: "帶著新的夥伴、問題與方向回到日常，讓探索繼續發生。",
-		description: "營隊結束後，真正的探索才剛開始。你會帶著五天累積的經驗、認識的人、還想繼續追的問題回到日常，也可能因此開始下一段學習、專案或社群參與，讓 SITCON Camp 留下的不只是回憶，而是大家願意繼續學習、實作與參與社群的起點。",
+		description:
+			"營隊結束後，真正的探索才剛開始。你會帶著五天累積的經驗、認識的人、還想繼續追的問題回到日常，也可能因此開始下一段學習、專案或社群參與，讓 SITCON Camp 留下的不只是回憶，而是大家願意繼續學習、實作與參與社群的起點。",
 		category: "收束",
 		image: {
 			src: "/2026/images/schedule/departure.svg",
