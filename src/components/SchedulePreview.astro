@@ -18,7 +18,7 @@ const categoryClassMap: Record<ScheduleEventCategory, string> = {
 	啟程: "schedule-badge--green",
 	主線課程: "schedule-badge--blue",
 	社群活動: "schedule-badge--orange",
-	收束: "schedule-badge--dark"
+	總結: "schedule-badge--dark"
 };
 
 const getEvent = (eventId: string): ScheduleEvent => {
@@ -113,7 +113,7 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 		</header>
 
 		<div class="schedule-notes" aria-label="課表公告">
-			<p class="schedule-note">更多資訊將於本週發佈，三個主題日的實際順序與完整時段將於正式課表公開時一併更新</p>
+			<p class="schedule-note">{scheduleMeta.note}</p>
 		</div>
 
 		<div class="schedule-board" aria-label="五天活動日程輪廓">
