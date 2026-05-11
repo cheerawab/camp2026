@@ -790,7 +790,7 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 	.schedule-dialog {
 		position: fixed;
 		inset: 0;
-		z-index: 100;
+		z-index: 1100;
 		display: grid;
 		place-items: center;
 		inline-size: auto;
@@ -803,7 +803,10 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 		color: var(--color-background);
 		background: rgb(0 0 0 / 55%);
 		border: 0;
-		overflow: hidden;
+		overflow-x: hidden;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+		-webkit-overflow-scrolling: touch;
 	}
 
 	.schedule-dialog[hidden] {
@@ -1201,6 +1204,17 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 
 		.schedule-dialog__content {
 			padding: 1.25rem;
+		}
+	}
+
+	@media (max-width: 48rem) {
+		.schedule-dialog {
+			place-items: start center;
+			padding: calc(4.5rem + env(safe-area-inset-top, 0px)) 1rem 1rem;
+		}
+
+		.schedule-dialog__panel {
+			max-height: calc(100dvh - 5.5rem - env(safe-area-inset-top, 0px));
 		}
 	}
 
