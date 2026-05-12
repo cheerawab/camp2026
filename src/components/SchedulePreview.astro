@@ -222,10 +222,14 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 	document.addEventListener("astro:page-load", () => {
 		const ac = new AbortController();
 		const { signal } = ac;
-		document.addEventListener("astro:before-swap", () => {
-			closeDialog();
-			ac.abort();
-		}, { once: true });
+		document.addEventListener(
+			"astro:before-swap",
+			() => {
+				closeDialog();
+				ac.abort();
+			},
+			{ once: true }
+		);
 
 		const dialogs = new Map(Array.from(document.querySelectorAll<HTMLElement>("[data-schedule-dialog]")).map(dialog => [dialog.dataset.scheduleDialog ?? "", dialog]));
 		const pageContent = document.querySelector<HTMLElement>("[data-schedule-page-content]");
@@ -236,16 +240,15 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 		let lastFocusedElement: HTMLElement | null = null;
 		let scrollPosition = 0;
 		const focusableSelector = [
-			'a[href]',
-			'button:not([disabled])',
+			"a[href]",
+			"button:not([disabled])",
 			'input:not([disabled]):not([type="hidden"])',
-			'select:not([disabled])',
-			'textarea:not([disabled])',
+			"select:not([disabled])",
+			"textarea:not([disabled])",
 			'[tabindex]:not([tabindex="-1"])'
 		].join(",");
 
-		const getFocusableElements = (dialog: HTMLElement) =>
-			Array.from(dialog.querySelectorAll<HTMLElement>(focusableSelector)).filter(element => !element.closest("[hidden]"));
+		const getFocusableElements = (dialog: HTMLElement) => Array.from(dialog.querySelectorAll<HTMLElement>(focusableSelector)).filter(element => !element.closest("[hidden]"));
 
 		const setPageContentInert = (isInert: boolean) => {
 			if (!pageContent) return;
@@ -267,9 +270,7 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 		};
 
 		const restoreFocus = (dialog: HTMLElement | null) => {
-			const fallbackTrigger = dialog?.dataset.scheduleDialog
-				? document.querySelector<HTMLElement>(`[data-schedule-event-trigger="${dialog.dataset.scheduleDialog}"]`)
-				: null;
+			const fallbackTrigger = dialog?.dataset.scheduleDialog ? document.querySelector<HTMLElement>(`[data-schedule-event-trigger="${dialog.dataset.scheduleDialog}"]`) : null;
 			const target = lastFocusedElement && lastFocusedElement.isConnected && (!dialog || !dialog.contains(lastFocusedElement)) ? lastFocusedElement : fallbackTrigger;
 
 			target?.focus({ preventScroll: true });
@@ -371,13 +372,7 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 				}
 
 				const currentIndex = focusables.indexOf(document.activeElement as HTMLElement);
-				const nextIndex = event.shiftKey
-					? currentIndex <= 0
-						? focusables.length - 1
-						: currentIndex - 1
-					: currentIndex === -1 || currentIndex === focusables.length - 1
-						? 0
-						: currentIndex + 1;
+				const nextIndex = event.shiftKey ? (currentIndex <= 0 ? focusables.length - 1 : currentIndex - 1) : currentIndex === -1 || currentIndex === focusables.length - 1 ? 0 : currentIndex + 1;
 
 				event.preventDefault();
 				focusables[nextIndex]?.focus({ preventScroll: true });
