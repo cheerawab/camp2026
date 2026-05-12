@@ -222,7 +222,10 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 	document.addEventListener("astro:page-load", () => {
 		const ac = new AbortController();
 		const { signal } = ac;
-		document.addEventListener("astro:before-swap", () => ac.abort(), { once: true });
+		document.addEventListener("astro:before-swap", () => {
+			closeDialog();
+			ac.abort();
+		}, { once: true });
 
 		const dialogs = new Map(Array.from(document.querySelectorAll<HTMLElement>("[data-schedule-dialog]")).map(dialog => [dialog.dataset.scheduleDialog ?? "", dialog]));
 		const pageContent = document.querySelector<HTMLElement>("[data-schedule-page-content]");
