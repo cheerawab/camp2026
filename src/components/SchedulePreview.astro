@@ -117,12 +117,7 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 				<p class="schedule-note">{scheduleMeta.note}</p>
 			</div>
 
-			<div class="schedule-view-switch" data-schedule-view-switch role="group" aria-label="手機課表檢視切換">
-				<button type="button" class="schedule-view-switch__option" data-schedule-view-option="scroll" aria-pressed="false">橫向</button>
-				<button type="button" class="schedule-view-switch__option is-active" data-schedule-view-option="stacked" aria-pressed="true">直向</button>
-			</div>
-
-			<div class="schedule-board" aria-label="五天活動日程輪廓">
+			<div class="schedule-board schedule-board--scroll" aria-label="五天活動日程輪廓">
 				<div class="schedule-time-rail" aria-hidden="true">
 					<div class="schedule-time-rail__spacer"></div>
 					{schedulePeriods.map(period => <div class="schedule-time-rail__period">{period}</div>)}
@@ -234,8 +229,6 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 		const dialogs = new Map(Array.from(document.querySelectorAll<HTMLElement>("[data-schedule-dialog]")).map(dialog => [dialog.dataset.scheduleDialog ?? "", dialog]));
 		const pageContent = document.querySelector<HTMLElement>("[data-schedule-page-content]");
 		const scheduleBoard = document.querySelector<HTMLElement>(".schedule-board");
-		const viewSwitch = document.querySelector<HTMLElement>("[data-schedule-view-switch]");
-		const viewOptions = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-schedule-view-option]"));
 		let activeDialog: HTMLElement | null = null;
 		let lastFocusedElement: HTMLElement | null = null;
 		let scrollPosition = 0;
@@ -276,30 +269,6 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 			target?.focus({ preventScroll: true });
 			lastFocusedElement = null;
 		};
-
-		const setScheduleView = (view: "scroll" | "stacked") => {
-			scheduleBoard?.classList.toggle("schedule-board--scroll", view === "scroll");
-			viewOptions.forEach(option => {
-				const isActive = option.dataset.scheduleViewOption === view;
-				option.classList.toggle("is-active", isActive);
-				option.setAttribute("aria-pressed", String(isActive));
-			});
-		};
-
-		viewSwitch?.addEventListener(
-			"click",
-			event => {
-				if (!(event.target instanceof Element)) return;
-
-				const option = event.target.closest<HTMLButtonElement>("[data-schedule-view-option]");
-				const view = option?.dataset.scheduleViewOption;
-
-				if (view === "scroll" || view === "stacked") {
-					setScheduleView(view);
-				}
-			},
-			{ signal }
-		);
 
 		const closeDialog = (dialog = activeDialog) => {
 			if (!dialog) return;
@@ -839,34 +808,6 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 		text-align: center;
 	}
 
-	.schedule-view-switch {
-		display: none;
-	}
-
-	.schedule-view-switch__option {
-		min-width: 6rem;
-		padding: 0.62rem 0.9rem;
-		color: var(--color-foreground);
-		font: inherit;
-		font-size: 0.95rem;
-		font-weight: 800;
-		line-height: 1;
-		cursor: pointer;
-		background: transparent;
-		border: 0;
-		border-radius: 0.75rem 0;
-		transition:
-			background 160ms ease,
-			color 160ms ease,
-			transform 160ms ease;
-	}
-
-	.schedule-view-switch__option.is-active {
-		color: var(--color-background);
-		background: var(--color-foreground);
-		box-shadow: 0.14rem 0.14rem 0 0 var(--color-orange);
-	}
-
 	.schedule-dialog {
 		position: fixed;
 		inset: 0;
@@ -1081,22 +1022,6 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 	@media (max-width: 48rem) {
 		.schedule-page {
 			padding-block-start: 7.25rem;
-		}
-
-		.schedule-view-switch {
-			display: flex;
-			justify-content: center;
-			width: fit-content;
-			margin: clamp(1.5rem, 6vw, 2.25rem) auto 0;
-			padding: 0.28rem;
-			background: color-mix(in srgb, var(--color-foreground) 10%, transparent);
-			border: 2px solid color-mix(in srgb, var(--color-foreground) 18%, transparent);
-			border-radius: 1rem 0;
-		}
-
-		.schedule-view-switch__option:focus-visible {
-			outline: 0.18rem solid var(--color-soft-blue);
-			outline-offset: 0.12rem;
 		}
 
 		.schedule-board {
