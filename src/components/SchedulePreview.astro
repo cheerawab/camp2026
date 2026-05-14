@@ -149,7 +149,7 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 							<article class:list={["schedule-day", dayAccentClassMap[day.type]]}>
 								<header class="schedule-day__header">
 									<div class="schedule-day__header-copy">
-										<h2 class="schedule-day__title">{day.title}</h2>
+										<h2 class="schedule-day__title">{day.title.map(line => <>{line}<br /></>)}</h2>
 										<p class="schedule-day__subtitle">{day.subtitle}</p>
 									</div>
 								</header>
@@ -169,7 +169,7 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 													}
 												]}
 												style={`--schedule-block-row:${block.rowStart}; --schedule-block-span:${block.span};`}
-												aria-label={`${day.title}${block.label}活動`}
+												aria-label={`${day.title.join("")}${block.label}活動`}
 											>
 												<h3 class="schedule-block__period">{block.label}</h3>
 												{event ? (

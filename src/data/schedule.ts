@@ -20,7 +20,7 @@ export interface ScheduleBlock {
 
 export interface ScheduleDay {
 	id: string;
-	title: string;
+	title: string[];
 	subtitle: string;
 	type: ScheduleDayType;
 	blocks: ScheduleBlock[];
@@ -266,7 +266,7 @@ export const scheduleEvents: ScheduleEvent[] = [
 export const scheduleDays: ScheduleDay[] = [
 	{
 		id: "day-one",
-		title: "第一日",
+		title: ["第一日"],
 		subtitle: "報到／破冰",
 		type: "opening",
 		blocks: [
@@ -283,7 +283,7 @@ export const scheduleDays: ScheduleDay[] = [
 	},
 	{
 		id: "day-two",
-		title: "軟體工程主題",
+		title: ["軟體工程", "主題日"],
 		subtitle: "講師：Denny 黃一晉",
 		type: "software",
 		blocks: [
@@ -298,7 +298,7 @@ export const scheduleDays: ScheduleDay[] = [
 	},
 	{
 		id: "day-three",
-		title: "人工智慧主題",
+		title: ["人工智慧", "主題日"],
 		subtitle: "講師：Ak 郭鎮天、Harry 張祺煒",
 		type: "artificial-intelligence",
 		blocks: [
@@ -313,7 +313,7 @@ export const scheduleDays: ScheduleDay[] = [
 	},
 	{
 		id: "day-four",
-		title: "資訊安全主題",
+		title: ["資訊安全", "主題日"],
 		subtitle: "講師：Jasper 尤理衡",
 		type: "security",
 		blocks: [
@@ -329,7 +329,7 @@ export const scheduleDays: ScheduleDay[] = [
 	},
 	{
 		id: "day-five",
-		title: "第五日",
+		title: ["第五日"],
 		subtitle: "收尾",
 		type: "closing",
 		blocks: [
