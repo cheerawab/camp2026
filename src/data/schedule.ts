@@ -222,7 +222,11 @@ export const scheduleEvents: ScheduleEvent[] = [
 			"除 SITCON 學生計算機年會外，其實還有許多不同資訊社群，這些社群有著不同的取向，但都有相同對資訊的熱愛，我們精選了數個社群，從開放文化到 Python 再到資訊安全，在這裡，你可以認識一群「友」，使得資訊探索之路更加精彩。"
 		],
 		category: "活動",
-		isInteractive: true
+		isInteractive: true,
+		image: {
+			src: "/2026/images/schedule/community-fair.jpg",
+			alt: "社群博覽會攤位交流現場"
+		}
 	},
 	{
 		id: "vision-cafe",
@@ -234,7 +238,11 @@ export const scheduleEvents: ScheduleEvent[] = [
 			"學員可以與資訊界的名人們近距離互動，期望透過縮短講者與學員之間的距離，講者可以更針對學員給出建議，也鼓勵學員踴躍提問、參與，進而產生良好的雙向交流。"
 		],
 		category: "活動",
-		isInteractive: true
+		isInteractive: true,
+		image: {
+			src: "/2026/images/schedule/vision-cafe.jpg",
+			alt: "視界咖啡館交流現場"
+		}
 	},
 	{
 		id: "sigs-ak",
