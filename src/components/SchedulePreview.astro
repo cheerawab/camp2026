@@ -142,12 +142,9 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 								<header class="schedule-day__header">
 									<div class="schedule-day__header-copy">
 										<h2 class="schedule-day__title">
-											{day.title.map((line, index) => (
-												<>
-													{line}
-													{index < day.title.length - 1 && <br />}
-												</>
-											))}
+											{day.title.flatMap((entry, index) =>
+												index === 0 ? [<span class="schedule-day__title-entry">{entry}</span>] : [<wbr />, <span class="schedule-day__title-entry">{entry}</span>]
+											)}
 										</h2>
 										<p class="schedule-day__subtitle">{day.subtitle}</p>
 									</div>
@@ -168,7 +165,7 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 													}
 												]}
 												style={`--schedule-block-row:${block.rowStart}; --schedule-block-span:${block.span};`}
-												aria-label={`${day.title.join("")}${block.label}活動`}
+												aria-label={`${day.title.join(" ")}${block.label}活動`}
 											>
 												<h3 class="schedule-block__period">{block.label}</h3>
 												{event ? (
@@ -619,6 +616,10 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 		font-size: clamp(1.25rem, 1.65vw, 1.72rem);
 		font-weight: 800;
 		line-height: 1.15;
+	}
+
+	.schedule-day__title-entry {
+		white-space: nowrap;
 	}
 
 	.schedule-day__blocks {
@@ -1178,7 +1179,6 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 		.schedule-board--scroll .schedule-day__title {
 			font-size: 1.42rem;
 			line-height: 1.15;
-			overflow-wrap: anywhere;
 			text-wrap: balance;
 		}
 

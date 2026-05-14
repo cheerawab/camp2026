@@ -299,6 +299,7 @@ export const scheduleEvents: ScheduleEvent[] = [
 export const scheduleDays: ScheduleDay[] = [
 	{
 		id: "day-one",
+		// Each title item is a wrap unit: keep words together, and only wrap between items when needed.
 		title: ["主線課程", "先導日"],
 		subtitle: "Day 1",
 		type: "opening",
@@ -359,7 +360,7 @@ export const scheduleDays: ScheduleDay[] = [
 	},
 	{
 		id: "day-five",
-		title: ["走向世界日"],
+		title: ["資訊交流探索日"],
 		subtitle: "Day 5",
 		type: "closing",
 		blocks: [
