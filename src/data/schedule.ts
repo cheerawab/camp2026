@@ -299,8 +299,8 @@ export const scheduleEvents: ScheduleEvent[] = [
 export const scheduleDays: ScheduleDay[] = [
 	{
 		id: "day-one",
-		title: ["第一日"],
-		subtitle: "主線課程先導",
+		title: ["主線課程", "先導日"],
+		subtitle: "Day 1",
 		type: "opening",
 		blocks: [
 			{ startSlot: "9:00", span: 2, eventId: "opening" },
@@ -316,7 +316,7 @@ export const scheduleDays: ScheduleDay[] = [
 	{
 		id: "day-two",
 		title: ["軟體工程", "主題日"],
-		subtitle: "講師：Denny 黃一晉",
+		subtitle: "Day 2",
 		type: "software",
 		blocks: [
 			{ startSlot: "9:00", span: 3, eventId: "software-main" },
@@ -330,7 +330,7 @@ export const scheduleDays: ScheduleDay[] = [
 	{
 		id: "day-three",
 		title: ["人工智慧", "主題日"],
-		subtitle: "講師：Ak 郭慕天、Harry 張祺煒",
+		subtitle: "Day 3",
 		type: "artificial-intelligence",
 		blocks: [
 			{ startSlot: "9:00", span: 3, eventId: "ml-main" },
@@ -345,7 +345,7 @@ export const scheduleDays: ScheduleDay[] = [
 	{
 		id: "day-four",
 		title: ["資訊安全", "主題日"],
-		subtitle: "講師：Jasper 尤理衡",
+		subtitle: "Day 4",
 		type: "security",
 		blocks: [
 			{ startSlot: "9:00", span: 3, eventId: "security-main" },
@@ -359,8 +359,8 @@ export const scheduleDays: ScheduleDay[] = [
 	},
 	{
 		id: "day-five",
-		title: ["第五日"],
-		subtitle: "開闢視野",
+		title: ["走向世界日"],
+		subtitle: "Day 5",
 		type: "closing",
 		blocks: [
 			{ startSlot: "10:00", eventId: "open-source-sharing" },
