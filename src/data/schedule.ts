@@ -360,7 +360,7 @@ export const scheduleDays: ScheduleDay[] = [
 	},
 	{
 		id: "day-five",
-		title: ["資訊交流探索日"],
+		title: ["資訊交流", "探索日"],
 		subtitle: "Day 5",
 		type: "closing",
 		blocks: [
