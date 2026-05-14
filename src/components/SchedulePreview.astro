@@ -5,6 +5,7 @@ import { scheduleDays, scheduleEvents, scheduleMeta, scheduleSlots } from "@/dat
 
 const eventsById = new Map(scheduleEvents.map(event => [event.id, event]));
 const scheduleSlotIndexMap = new Map(scheduleSlots.map((slot, index) => [slot, index]));
+const scheduleSlotCount = scheduleSlots.length;
 const interactiveScheduleEvents = scheduleEvents.filter(event => event.isInteractive === true && event.description && event.image);
 
 const dayAccentClassMap: Record<ScheduleDayType, string> = {
@@ -20,7 +21,7 @@ const categoryClassMap: Record<ScheduleEventCategory, string> = {
 	主線課程: "schedule-badge--blue",
 	活動: "schedule-badge--orange",
 	生活: "schedule-badge--sky",
-	休息: "schedule-badge--lavender",
+	其他: "schedule-badge--lavender",
 	總結: "schedule-badge--dark"
 };
 
@@ -128,7 +129,7 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 				)
 			}
 
-			<div class="schedule-board schedule-board--scroll" aria-label="五天活動日程輪廓">
+			<div class="schedule-board schedule-board--scroll" style={`--schedule-slot-count:${scheduleSlotCount};`} aria-label="五天活動日程輪廓">
 				<div class="schedule-time-rail" aria-hidden="true">
 					<div class="schedule-time-rail__spacer"></div>
 					{scheduleSlots.map(slot => <div class="schedule-time-rail__period">{slot}</div>)}
@@ -487,7 +488,7 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 
 	.schedule-time-rail {
 		display: grid;
-		grid-template-rows: var(--schedule-header-row) repeat(14, var(--schedule-slot-row));
+		grid-template-rows: var(--schedule-header-row) repeat(var(--schedule-slot-count), var(--schedule-slot-row));
 		gap: var(--schedule-row-gap);
 	}
 
@@ -542,7 +543,7 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 
 	.schedule-day {
 		display: grid;
-		grid-template-rows: var(--schedule-header-row) repeat(14, var(--schedule-slot-row));
+		grid-template-rows: var(--schedule-header-row) repeat(var(--schedule-slot-count), var(--schedule-slot-row));
 		gap: var(--schedule-row-gap);
 		min-width: 0;
 		overflow: hidden;

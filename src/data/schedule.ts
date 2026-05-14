@@ -1,10 +1,10 @@
 export type ScheduleDayType = "opening" | "software" | "artificial-intelligence" | "security" | "closing";
 
-export const scheduleSlots = ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "睡覺"] as const;
+export const scheduleSlots = ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"] as const;
 
 export type ScheduleSlot = (typeof scheduleSlots)[number];
 
-export type ScheduleEventCategory = "啟程" | "主線課程" | "活動" | "生活" | "休息" | "總結";
+export type ScheduleEventCategory = "啟程" | "主線課程" | "活動" | "生活" | "其他" | "總結";
 
 export interface ScheduleMeta {
 	title: string;
@@ -277,6 +277,12 @@ export const scheduleEvents: ScheduleEvent[] = [
 		category: "總結"
 	},
 	{
+		id: "free-chat",
+		name: "回宿 / 自由交流",
+		summary: "和夥伴自由交流，延續課程與活動後的討論。",
+		category: "其他"
+	},
+	{
 		id: "lunch",
 		name: "午餐",
 		summary: "補充能量，準備下午的課程與活動。",
@@ -287,12 +293,6 @@ export const scheduleEvents: ScheduleEvent[] = [
 		name: "晚餐",
 		summary: "晚餐與休息時間。",
 		category: "生活"
-	},
-	{
-		id: "sleep",
-		name: "睡覺",
-		summary: "休息，準備迎接隔天行程。",
-		category: "休息"
 	}
 ];
 
@@ -310,8 +310,7 @@ export const scheduleDays: ScheduleDay[] = [
 			{ startSlot: "16:00", span: 2, eventId: "agent-battle" },
 			{ startSlot: "18:00", eventId: "dinner" },
 			{ startSlot: "19:00", span: 2, eventId: "lab-setup" },
-			{ startSlot: "21:00", eventId: "sigs-ak" },
-			{ startSlot: "睡覺", eventId: "sleep" }
+			{ startSlot: "21:00", eventId: "sigs-ak" }
 		]
 	},
 	{
@@ -325,8 +324,7 @@ export const scheduleDays: ScheduleDay[] = [
 			{ startSlot: "13:00", span: 6, eventId: "software-main" },
 			{ startSlot: "19:00", eventId: "dinner" },
 			{ startSlot: "20:00", eventId: "agentic-coding" },
-			{ startSlot: "21:00", eventId: "sigs-ak" },
-			{ startSlot: "睡覺", eventId: "sleep" }
+			{ startSlot: "21:00", eventId: "sigs-ak" }
 		]
 	},
 	{
@@ -341,7 +339,7 @@ export const scheduleDays: ScheduleDay[] = [
 			{ startSlot: "16:00", span: 2, eventId: "heisenbug" },
 			{ startSlot: "18:00", eventId: "dinner" },
 			{ startSlot: "19:00", eventId: "ml-main" },
-			{ startSlot: "20:00", span: 3, eventId: "sleep" }
+			{ startSlot: "20:00", span: 2, eventId: "free-chat" }
 		]
 	},
 	{
@@ -356,8 +354,7 @@ export const scheduleDays: ScheduleDay[] = [
 			{ startSlot: "16:00", span: 3, eventId: "reality-puzzle" },
 			{ startSlot: "19:00", eventId: "dinner" },
 			{ startSlot: "20:00", eventId: "security-main" },
-			{ startSlot: "21:00", eventId: "sigs-ak" },
-			{ startSlot: "睡覺", eventId: "sleep" }
+			{ startSlot: "21:00", eventId: "sigs-ak" }
 		]
 	},
 	{
@@ -366,7 +363,6 @@ export const scheduleDays: ScheduleDay[] = [
 		subtitle: "收尾",
 		type: "closing",
 		blocks: [
-			{ startSlot: "9:00", eventId: "sleep" },
 			{ startSlot: "10:00", eventId: "open-source-sharing" },
 			{ startSlot: "11:00", span: 2, eventId: "community-fair" },
 			{ startSlot: "13:00", span: 2, eventId: "vision-cafe" },
