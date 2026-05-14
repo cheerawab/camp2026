@@ -71,14 +71,15 @@ export const scheduleEvents: ScheduleEvent[] = [
 	},
 	{
 		id: "quest",
-		name: "闖關",
-		summary: "以任務形式熟悉營隊環境與小隊合作。",
-		description: "透過闖關任務讓學員更快熟悉場地、隊友與營隊節奏，也在遊戲中練習溝通、分工與合作。",
+		name: "闖關活動",
+		summary: "結合觀察與分析，與隊友一同攻克隱藏在資訊背後的關卡",
+		description:
+			"當 AI 已經成為世界的一部分，那麼身處其中的我們，又該如何理解與運用科技？\n圍繞軟體工程、機器學習與資訊安全三大方向設計的挑戰內容，將結合觀察、分析與團隊合作等元素，讓大家在互動與探索的過程中，逐漸認識資訊科技背後的思考方式與應用場景。\n或許答案不只存在於程式之中，也藏在團隊合作與每一次推理的過程裡。\n準備好一起踏入這場科技探索了嗎？",
 		category: "社群活動",
 		isInteractive: true,
 		image: {
 			src: "/2026/images/schedule/night-special.jpg",
-			alt: "學員參與營隊活動"
+			alt: "學員參與闖關活動"
 		}
 	},
 	{
@@ -143,33 +144,37 @@ export const scheduleEvents: ScheduleEvent[] = [
 	},
 	{
 		id: "agentic-coding",
-		name: "AI Coding 交流",
-		summary: "Denny 分享如何把 AI agent 放進實際開發流程。",
-		description: "從使用經驗出發，交流如何讓 AI agent 協助開發、學習與實作，也討論工具帶來的效率、限制與判斷方式。",
+		name: "AI 寫程式經驗交流",
+		summary: "課程結束後，和同學一起聊聊實際使用 AI 寫程式工具的經驗：哪裡真的省時間？哪裡又容易踩坑？",
+		description:
+			"現在越來越多人會用 AI 協助寫程式，從產生雛形、理解錯誤訊息，到修改程式、補上測試，都可能交給 AI 幫忙。但工具越方便，也越容易遇到新的問題：它寫出來的程式真的對嗎？修改後會不會破壞原本功能？我們該怎麼判斷什麼時候可以相信它？\n\n在這個課後交流環節中，學員可以和同學分享自己使用 AI 寫程式工具的經驗，聊聊用過哪些方法、遇過哪些問題、哪些做法真的有幫助。經過一整天的軟體工程課程後，我們也會一起回頭思考：當 AI 可以幫我們寫更多程式碼時，需求釐清、架構設計、測試與維護為什麼變得更加重要。",
 		category: "主線課程",
 		isInteractive: true,
 		image: {
 			src: "/2026/images/schedule/software-main.jpg",
-			alt: "Agentic Coding 經驗交流"
+			alt: "AI 寫程式經驗交流"
 		}
 	},
 	{
 		id: "heisenbug",
-		name: "海森堡 Bug",
-		summary: "倫敦鐵喬帶來的除錯與思考挑戰。",
-		description: "透過海森堡 Bug 主題活動，學員會在不穩定、難重現的情境中練習觀察、推理與除錯策略。",
+		name: "破解位元城的都市傳說",
+		summary:
+			"位元城自古流傳著一則都市傳說：「當交易的巔峰過後，喧嘩終歸於海，財富與浮名皆隨浪隱入塵煙。」而如今，政府觀察到這則都市傳說似乎應證的情形，身為收到政府指派的守衛隊，你們該如何解救這場危機？",
+		description:
+			"在 AI 發達的時代，人與人的溝通變的稀薄，除了和 AI 聊聊天，也有人會請 AI 幫忙分析怎麼回復他人的訊息，但即使人工智慧在發達，交流仍是必不可少的，在課程之後的休閒，讓我們一起活絡筋骨、和營隊的新朋友們一起了解著名的「海森堡 Bug」的故事吧！",
 		category: "社群活動",
 		isInteractive: true,
 		image: {
 			src: "/2026/images/schedule/night-special.jpg",
-			alt: "學員參與除錯挑戰"
+			alt: "學員參與海森堡 Bug 活動"
 		}
 	},
 	{
 		id: "reality-puzzle",
 		name: "實境解謎",
-		summary: "把線索、觀察與合作串成解題流程。",
-		description: "實境解謎將學員帶進跨場景的任務挑戰，透過線索整理、團隊溝通與推理，一起完成解謎目標。",
+		summary: "在場地各處尋找線索，和隊友一起解開藏在營隊中的謎題。",
+		description:
+			"實境解謎會把線索藏進營隊場地的各個角落，學員需要走出教室、觀察環境，尋找散落在四周的提示與關鍵資訊。每一道謎題都不只是單純的問答，而是需要結合觀察、推理、討論與團隊分工，才能一步步靠近答案。\n\n在這個活動中，學員會和小隊夥伴一起探索場地、交換想法、驗證猜測，也可能在卡關時從別人的觀點中找到新的切入點。透過解謎的過程，讓大家在課程之外用另一種方式熟悉營隊空間，也在合作與推理中累積共同完成任務的經驗。",
 		category: "社群活動",
 		isInteractive: true,
 		image: {
@@ -181,7 +186,8 @@ export const scheduleEvents: ScheduleEvent[] = [
 		id: "open-source-sharing",
 		name: "開源理念分享",
 		summary: "認識開源精神與學生社群的參與方式。",
-		description: "從開源理念出發，理解開放協作如何影響技術社群，也看見學生可以如何參與、貢獻與延續自己的學習。",
+		description:
+			"「為什麼我們要辦 SITCON？大概是為了吃宵夜時有人能揪一塊去」（Rifur，2013）\n\n對許多新接觸的參與者而言，資訊社群是個不可思議的地方：大家好像都有話直說、勇於表達、互相提攜，也很少有輩分或是上下關係的顧慮。在這場短講裡，我會盡量用簡單的方式帶過資訊社群文化發展的歷史、介紹社群成員彼此協作的方式，以及讓大家了解有哪些地方能找到學習資源、甚至進一步對你喜歡的專案做出有意義的貢獻。",
 		category: "社群活動",
 		isInteractive: true,
 		image: {
@@ -190,16 +196,22 @@ export const scheduleEvents: ScheduleEvent[] = [
 		}
 	},
 	{
-		id: "community-cafe",
-		name: "社群交流與視界咖啡館",
-		summary: "和講者、隊輔與夥伴交流，把五天經驗整理成下一步。",
-		description: "最後一天保留時間讓學員交流、提問與整理經驗，在視界咖啡館中看見更多資訊社群的入口。",
+		id: "community-fair",
+		name: "社群博覽會",
+		summary: "群覽資訊社群，踏出啟程之路",
+		description:
+			"資訊世界廣袤無垠，「獨學而無友，則孤陋寡聞」既然如此來探索不同社群看看吧！除 SITCON 學生計算機年會外，其實還有許多不同資訊社群，這些社群有著不同的取向，但都有相同對資訊的熱愛，我們精選了數個社群，從開放文化到 Python 再到資訊安全，在這裡，你可以認識一群「友」，使得資訊探索之路更加精彩。",
 		category: "社群活動",
-		isInteractive: true,
-		image: {
-			src: "/2026/images/schedule/learning-wrap.jpg",
-			alt: "學員交流與分享"
-		}
+		isInteractive: true
+	},
+	{
+		id: "vision-cafe",
+		name: "視界咖啡館",
+		summary: "透過輕鬆對談的形式，在與前輩近距離交流中獲得啟發。",
+		description:
+			"視界咖啡館參考自世界咖啡館（The World Café），在本次夏令營中，我們邀請到各領域及社群知名前輩，將傳統座談會形式改以聊天的樣貌呈現。學員可以與資訊界的名人們近距離互動，期望透過縮短講者與學員之間的距離，講者可以更針對學員給出建議，也鼓勵學員踴躍提問、參與，進而產生良好的雙向交流。",
+		category: "社群活動",
+		isInteractive: true
 	},
 	{
 		id: "sigs-ak",
@@ -323,7 +335,8 @@ export const scheduleDays: ScheduleDay[] = [
 		blocks: [
 			{ startSlot: "9:00", eventId: "sleep" },
 			{ startSlot: "10:00", eventId: "open-source-sharing" },
-			{ startSlot: "11:00", span: 4, eventId: "community-cafe" },
+			{ startSlot: "11:00", span: 2, eventId: "community-fair" },
+			{ startSlot: "13:00", span: 2, eventId: "vision-cafe" },
 			{ startSlot: "15:00", span: 2, eventId: "closing" },
 			{ startSlot: "17:00", span: 6, eventId: "return-home" }
 		]
