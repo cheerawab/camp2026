@@ -94,8 +94,8 @@ export const scheduleEvents: ScheduleEvent[] = [
 		category: "活動",
 		isInteractive: true,
 		image: {
-			src: "/2026/images/schedule/night-special.jpg",
-			alt: "學員參與互動活動"
+			src: "/2026/images/schedule/agent-battle.jpg",
+			alt: "學員操作著電腦"
 		}
 	},
 	{
