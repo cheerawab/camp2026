@@ -84,9 +84,9 @@ export const scheduleEvents: ScheduleEvent[] = [
 	},
 	{
 		id: "agent-battle",
-		name: "Agent 對戰活動",
-		summary: "讓你的 agent 和其他人的成果一較高下。",
-		description: "把課程中的想法轉成可互動的 agent，並在活動中觀察不同策略如何面對同一個挑戰。",
+		name: "？？？",
+		summary: "神秘活動...",
+		description: "詳細內容將在營期間揭曉，先把這段時間留給一場還不能公開的神秘活動。",
 		category: "活動",
 		isInteractive: true,
 		image: {
@@ -215,9 +215,9 @@ export const scheduleEvents: ScheduleEvent[] = [
 	},
 	{
 		id: "sigs-ak",
-		name: "SIGs",
-		summary: "Ak 帶領的晚間主題交流。",
-		description: "SIGs 是晚間的小型主題交流時間，讓學員能針對有興趣的題目延伸討論，也認識更多不同背景的夥伴。",
+		name: "？？？",
+		summary: "神秘活動...",
+		description: "這個時段暫時保留給神秘活動，更多內容會在之後公開。",
 		category: "活動",
 		isInteractive: true,
 		image: {
