@@ -40,7 +40,7 @@ export interface ScheduleEvent {
 }
 
 export const scheduleMeta: ScheduleMeta = {
-	title: "活動課表",
+	title: "活動日程",
 	description: "SITCON Camp 2026 將圍繞軟體工程、人工智慧與資訊安全三大主線展開，並穿插交流、實作與活動。"
 };
 
@@ -82,13 +82,13 @@ export const scheduleEvents: ScheduleEvent[] = [
 		category: "活動",
 		isInteractive: true,
 		image: {
-			src: "/2026/images/schedule/night-special.jpg",
+			src: "/2026/images/schedule/quest.jpg",
 			alt: "學員參與闖關活動"
 		}
 	},
 	{
 		id: "agent-battle",
-		name: "讓你的 agent 跟別人的戰鬥吧！",
+		name: "讓你的 Agent 跟別人的戰鬥吧！",
 		summary: "神秘活動...",
 		description: ["即將揭曉..."],
 		category: "活動",
@@ -100,13 +100,15 @@ export const scheduleEvents: ScheduleEvent[] = [
 	},
 	{
 		id: "lab-setup",
-		name: "電腦教室環境設定",
+		name: "先導課程",
 		summary: "完成接下來課程需要的環境與工具準備。",
-		description: ["協助學員完成電腦教室環境與工具設定，讓後續主線課程能順利進行。"],
+		description: [
+			"在正式進入主線課程前，帶領學員完成電腦教室環境、常用工具與開發平台設定，確保後續實作能順利進行。同時，課程也將引導學員理解開發環境的基本概念，讓學員即使離開 Camp 後，也能在自己的電腦上重現設定流程，持續進行自主學習與專案開發。 "
+		],
 		category: "啟程",
 		isInteractive: true,
 		image: {
-			src: "/2026/images/schedule/start-and-opening.jpg",
+			src: "/2026/images/schedule/lab-setup.jpg",
 			alt: "課程環境設定"
 		}
 	},
@@ -175,7 +177,7 @@ export const scheduleEvents: ScheduleEvent[] = [
 		category: "活動",
 		isInteractive: true,
 		image: {
-			src: "/2026/images/schedule/night-special.jpg",
+			src: "/2026/images/schedule/heisenbug.jpg",
 			alt: "學員參與海森堡 Bug 活動"
 		}
 	},
@@ -191,7 +193,7 @@ export const scheduleEvents: ScheduleEvent[] = [
 		category: "活動",
 		isInteractive: true,
 		image: {
-			src: "/2026/images/schedule/night-special.jpg",
+			src: "/2026/images/schedule/reality-puzzle.jpg",
 			alt: "學員參與實境解謎"
 		}
 	},
@@ -236,14 +238,16 @@ export const scheduleEvents: ScheduleEvent[] = [
 	},
 	{
 		id: "sigs-ak",
-		name: "？？？",
-		summary: "神秘活動...",
-		description: ["即將揭曉..."],
+		name: "專題圓桌討論會",
+		summary: "課程內的知識固然重要，但課程外的經驗與想法不可忽略，來一場酣暢淋漓的思維討論與碰撞吧。",
+		description: [
+			"除去軟體工程、資訊安全、人工智慧外，資訊領域還有許多不同的面向，學科之上也有很多經驗與心酸血淚史。在這個活動中，學員會分成不同的興趣小組，以專題為框架，並透過講師、隊輔的輔助，一同對一個領域深入討論與探索，了解資訊宇宙更全面的樣貌。"
+		],
 		category: "活動",
 		isInteractive: true,
 		image: {
-			src: "/2026/images/schedule/night-special.jpg",
-			alt: "晚間主題交流"
+			src: "/2026/images/schedule/roundtable-discussion.jpg",
+			alt: "學員在專題圓桌討論會中交流討論"
 		}
 	},
 	{
@@ -320,7 +324,7 @@ export const scheduleDays: ScheduleDay[] = [
 	{
 		id: "day-three",
 		title: ["人工智慧", "主題日"],
-		subtitle: "講師：Ak 郭鎮天、Harry 張祺煒",
+		subtitle: "講師：Ak 郭慕天、Harry 張祺煒",
 		type: "artificial-intelligence",
 		blocks: [
 			{ startSlot: "9:00", span: 3, eventId: "ml-main" },
