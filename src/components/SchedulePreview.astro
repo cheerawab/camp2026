@@ -248,16 +248,7 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 					return (
 						<div class="schedule-dialog__panel">
 							<div class="schedule-dialog__image-wrap">
-								<Image
-									class="schedule-dialog__image"
-									src={image}
-									alt={imageAlt}
-									loading="lazy"
-									decoding="async"
-									format="webp"
-									widths={[640, 960, 1280, 1600]}
-									sizes="(max-width: 72rem) 100vw, 52vw"
-								/>
+								<Image class="schedule-dialog__image" src={image} alt={imageAlt} loading="lazy" decoding="async" format="webp" widths={[640, 960, 1280, 1600]} sizes="(max-width: 72rem) 100vw, 52vw" />
 							</div>
 							<div class="schedule-dialog__content">
 								<span class:list={["schedule-dialog__badge", categoryClassMap[event.category]]}>{event.category}</span>
