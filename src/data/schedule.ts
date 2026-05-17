@@ -58,15 +58,15 @@ export const scheduleEvents: ScheduleEvent[] = [
 		}
 	},
 	{
-		id: "icebreaking",
-		name: "破冰",
-		summary: "透過互動任務，認識一起學習與合作的夥伴。",
-		description: ["破冰不只是為了記住名字，而是讓大家有機會交換想法、發現彼此的好奇心。", "透過輕鬆的互動與任務，學員會認識小隊夥伴，熟悉營隊氣氛。"],
-		category: "活動",
+		id: "broad-course",
+		name: "廣度課程",
+		summary: "敬請期待...",
+		description: ["即將揭曉..."],
+		category: "其他",
 		isInteractive: true,
 		image: {
-			key: "icebreaking",
-			alt: "學員在破冰活動中互動交流"
+			key: "broad-course",
+			alt: "廣度課程活動現場"
 		}
 	},
 	{
@@ -206,7 +206,7 @@ export const scheduleEvents: ScheduleEvent[] = [
 			"",
 			"對許多新接觸的參與者而言，資訊社群是個不可思議的地方：大家好像都有話直說、勇於表達、互相提攜，也很少有輩分或是上下關係的顧慮。在這場短講裡，我會盡量用簡單的方式帶過資訊社群文化發展的歷史、介紹社群成員彼此協作的方式，以及讓大家了解有哪些地方能找到學習資源、甚至進一步對你喜歡的專案做出有意義的貢獻。"
 		],
-		category: "活動",
+		category: "其他",
 		isInteractive: true,
 		image: {
 			key: "learning-wrap",
@@ -304,13 +304,13 @@ export const scheduleDays: ScheduleDay[] = [
 		subtitle: "Day 1",
 		type: "opening",
 		blocks: [
-			{ startSlot: "9:00", span: 2, eventId: "opening" },
-			{ startSlot: "11:00", eventId: "icebreaking" },
+			{ startSlot: "9:00", eventId: "opening" },
+			{ startSlot: "10:00", span: 2, eventId: "lab-setup" },
 			{ startSlot: "12:00", eventId: "lunch" },
-			{ startSlot: "13:00", span: 3, eventId: "quest" },
-			{ startSlot: "16:00", span: 2, eventId: "agent-battle" },
+			{ startSlot: "13:00", span: 2, eventId: "broad-course" },
+			{ startSlot: "15:00", span: 3, eventId: "quest" },
 			{ startSlot: "18:00", eventId: "dinner" },
-			{ startSlot: "19:00", span: 2, eventId: "lab-setup" },
+			{ startSlot: "19:00", span: 2, eventId: "agent-battle" },
 			{ startSlot: "21:00", eventId: "sigs-ak" }
 		]
 	},
