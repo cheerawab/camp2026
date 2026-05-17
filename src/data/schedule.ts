@@ -4,7 +4,7 @@ export const scheduleSlots = ["9:00", "10:00", "11:00", "12:00", "13:00", "14:00
 
 export type ScheduleSlot = (typeof scheduleSlots)[number];
 
-export type ScheduleEventCategory = "啟程" | "主線課程" | "廣度課程" | "活動" | "生活" | "其他" | "總結";
+export type ScheduleEventCategory = "啟程" | "主線課程" | "活動" | "生活" | "其他" | "總結";
 
 export interface ScheduleMeta {
 	title: string;
@@ -62,7 +62,7 @@ export const scheduleEvents: ScheduleEvent[] = [
 		name: "廣度課程",
 		summary: "敬請期待...",
 		description: ["即將揭曉..."],
-		category: "廣度課程",
+		category: "其他",
 		isInteractive: true,
 		image: {
 			key: "broad-course",
@@ -206,7 +206,7 @@ export const scheduleEvents: ScheduleEvent[] = [
 			"",
 			"對許多新接觸的參與者而言，資訊社群是個不可思議的地方：大家好像都有話直說、勇於表達、互相提攜，也很少有輩分或是上下關係的顧慮。在這場短講裡，我會盡量用簡單的方式帶過資訊社群文化發展的歷史、介紹社群成員彼此協作的方式，以及讓大家了解有哪些地方能找到學習資源、甚至進一步對你喜歡的專案做出有意義的貢獻。"
 		],
-		category: "廣度課程",
+		category: "其他",
 		isInteractive: true,
 		image: {
 			key: "learning-wrap",
