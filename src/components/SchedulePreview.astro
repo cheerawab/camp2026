@@ -30,6 +30,7 @@ const dayAccentClassMap: Record<ScheduleDayType, string> = {
 const categoryClassMap: Record<ScheduleEventCategory, string> = {
 	啟程: "schedule-badge--green",
 	主線課程: "schedule-badge--blue",
+	廣度課程: "schedule-badge--sky-blue",
 	活動: "schedule-badge--orange",
 	生活: "schedule-badge--sky",
 	其他: "schedule-badge--lavender",
@@ -806,6 +807,11 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 	.schedule-badge--orange {
 		color: var(--color-foreground);
 		background: color-mix(in srgb, var(--color-orange) 78%, white);
+	}
+
+	.schedule-badge--sky-blue {
+		color: var(--color-background);
+		background: var(--color-sky-blue);
 	}
 
 	.schedule-badge--dark {
