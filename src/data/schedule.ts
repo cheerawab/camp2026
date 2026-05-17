@@ -58,15 +58,15 @@ export const scheduleEvents: ScheduleEvent[] = [
 		}
 	},
 	{
-		id: "icebreaking",
-		name: "破冰",
-		summary: "透過互動任務，認識一起學習與合作的夥伴。",
-		description: ["破冰不只是為了記住名字，而是讓大家有機會交換想法、發現彼此的好奇心。", "透過輕鬆的互動與任務，學員會認識小隊夥伴，熟悉營隊氣氛。"],
+		id: "broad-course",
+		name: "廣度課程",
+		summary: "敬請期待...",
+		description: ["即將揭曉..."],
 		category: "活動",
 		isInteractive: true,
 		image: {
-			key: "icebreaking",
-			alt: "學員在破冰活動中互動交流"
+			key: "broad-course",
+			alt: "廣度課程活動現場"
 		}
 	},
 	{
@@ -304,13 +304,13 @@ export const scheduleDays: ScheduleDay[] = [
 		subtitle: "Day 1",
 		type: "opening",
 		blocks: [
-			{ startSlot: "9:00", span: 2, eventId: "opening" },
-			{ startSlot: "11:00", eventId: "icebreaking" },
+			{ startSlot: "9:00", eventId: "opening" },
+			{ startSlot: "10:00", span: 2, eventId: "lab-setup" },
 			{ startSlot: "12:00", eventId: "lunch" },
-			{ startSlot: "13:00", span: 3, eventId: "quest" },
-			{ startSlot: "16:00", span: 2, eventId: "agent-battle" },
+			{ startSlot: "13:00", span: 2, eventId: "broad-course" },
+			{ startSlot: "15:00", span: 3, eventId: "quest" },
 			{ startSlot: "18:00", eventId: "dinner" },
-			{ startSlot: "19:00", span: 2, eventId: "lab-setup" },
+			{ startSlot: "19:00", span: 2, eventId: "agent-battle" },
 			{ startSlot: "21:00", eventId: "sigs-ak" }
 		]
 	},
