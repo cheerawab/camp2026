@@ -39,7 +39,7 @@ type FooterIcon = keyof typeof iconMap;
 							<div class="mb-5">
 								{section.label && <p class="text-muted mb-1 text-sm font-bold">{section.label}</p>}
 								{section.links.map(link => (
-									<a href={link.href} class:list={["link-base", `link-hover-${section.variant}`]}>
+									<a href={link.href} class:list={["link-base font-bold", `link-hover-${section.variant}`]}>
 										{link.label}
 									</a>
 								))}
