@@ -17,7 +17,6 @@ const commentColorClassMap: Record<string, string> = {
 	"soft-blue": "bg-soft-blue"
 };
 
-
 const studentImages = new Map(
 	Object.entries(import.meta.glob<{ default: ImageMetadata }>("../assets/student-comments/*.{jpg,png,webp}", { eager: true })).map(([path, mod]) => [path.split("/").pop() ?? path, mod.default])
 );
