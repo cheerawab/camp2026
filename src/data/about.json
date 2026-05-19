@@ -55,6 +55,13 @@
 			}
 		]
 	},
+	"aboutVideo": {
+		"eyebrow": "媒體報導",
+		"title": "從報導認識 SITCON",
+		"lead": "年代 MUCH《台灣新驕點》專訪開放文化基金會，介紹 SITCON 學生計算機年會與學生社群如何推動資訊交流、開源文化與下一代人才培育。",
+		"label": "台灣新驕點：開放文化基金會 - 2026 SITCON 學生計算機年會",
+		"embedUrl": "https://www.youtube-nocookie.com/embed/zplk0zALtOM?autoplay=1"
+	},
 	"sitconTimeline": {
 		"config": {
 			"scrollHeight": 600
@@ -246,7 +253,7 @@
 						"description": "希望可以拿到教師證的特教系大四\n科教所小精靈也是 SITCON 前一屆編輯組長兼行銷組員，正在各個地方遊蕩",
 						"job": "組員",
 						"avatarPath": "/assets/team-avatars/team-avatar-member-7530f6a8.webp",
-						"avatarLink": "https://www.instagram.com/yuuu____1103?igsh=anhyM3J2a3F4bXYz"
+						"avatarLink": "https://www.instagram.com/yuuu____1103"
 					}
 				]
 			},
