@@ -27,7 +27,7 @@ const items = timelineData.items.map(item => ({
 ---
 
 <div
-	class="relative mx-auto mt-6 w-full max-w-[80rem] [--dot:4rem] [--marker:0.875rem] [--stem:0.625rem] sm:mt-10 sm:[--dot:4.75rem] sm:[--marker:1rem] sm:[--stem:0.875rem] md:mt-14 lg:mt-20 lg:[--dot:5.5rem] lg:[--marker:1.125rem] lg:[--stem:1.125rem]"
+	class="relative mx-auto mt-6 w-full max-w-7xl [--dot:4rem] [--marker:0.875rem] [--stem:0.625rem] sm:mt-10 sm:[--dot:4.75rem] sm:[--marker:1rem] sm:[--stem:0.875rem] md:mt-14 lg:mt-20 lg:[--dot:5.5rem] lg:[--marker:1.125rem] lg:[--stem:1.125rem]"
 	role="group"
 	aria-label="報名重要時程"
 	style="
@@ -115,7 +115,7 @@ const items = timelineData.items.map(item => ({
 								>
 									<button
 										type="button"
-										class="bg-background text-foreground hover:bg-green focus-visible:outline-background flex h-12 items-center gap-2 rounded-full border-2 border-white/20 px-4 text-base leading-none font-extrabold whitespace-nowrap shadow-[0_0.25rem_0_0_var(--color-orange)] transition-colors focus-visible:outline-3 focus-visible:outline-offset-2 lg:h-[3.25rem] lg:px-5 lg:text-lg"
+										class="bg-background text-foreground hover:bg-green focus-visible:outline-background flex h-12 items-center gap-2 rounded-full border-2 border-white/20 px-4 text-base leading-none font-extrabold whitespace-nowrap shadow-[0_0.25rem_0_0_var(--color-orange)] transition-colors focus-visible:outline-3 focus-visible:outline-offset-2 lg:h-13 lg:px-5 lg:text-lg"
 										aria-label="將 SITCON Camp 2026 重要時程加入行事曆"
 										aria-haspopup="true"
 										aria-expanded="false"
@@ -167,7 +167,7 @@ const items = timelineData.items.map(item => ({
 						</div>
 						<div class="bg-soft-blue/40" style="width:0.125rem;height:var(--stem)" />
 						<div class="bg-soft-blue relative z-10 rounded-full" style="width:var(--marker);height:var(--marker)" />
-						<div class="mt-4 flex max-w-[12.5rem] flex-col gap-1.5">
+						<div class="mt-4 flex max-w-50 flex-col gap-1.5">
 							<span class="text-background text-base leading-tight font-extrabold whitespace-pre-line opacity-60 lg:text-[1.2rem]">{date}</span>
 							<span class="text-background text-lg leading-snug font-extrabold lg:text-[1.4rem]">{label}</span>
 						</div>

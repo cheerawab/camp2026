@@ -17,6 +17,15 @@ const commentColorClassMap: Record<string, string> = {
 	"soft-blue": "bg-soft-blue"
 };
 
+const commentTextColorClassMap: Record<string, string> = {
+	blue: "text-white",
+	orange: "text-foreground",
+	green: "text-foreground",
+	"dark-green": "text-white",
+	"sky-blue": "text-foreground",
+	"soft-blue": "text-foreground"
+};
+
 const studentImages = new Map(
 	Object.entries(import.meta.glob<{ default: ImageMetadata }>("../assets/student-comments/*.{jpg,png,webp}", { eager: true })).map(([path, mod]) => [path.split("/").pop() ?? path, mod.default])
 );
@@ -57,7 +66,7 @@ const videos = studentComment.video.map(video => {
 
 <section class="bg-background relative overflow-hidden" aria-labelledby="student-comment-title">
 	<div class="site-container flex flex-col gap-20 py-4 sm:pt-32 sm:pb-16">
-		<h2 id="student-comment-title" class="text-center text-[3rem] leading-[133%] font-bold text-balance">
+		<h2 id="student-comment-title" class="text-center text-5xl leading-[133%] font-bold text-balance">
 			{studentComment.sectionTitle}
 		</h2>
 
@@ -85,12 +94,12 @@ const videos = studentComment.video.map(video => {
 								<div class:list={["flex h-19 items-center gap-4 self-stretch rounded-t-4xl p-4", commentColorClassMap[c.color] ?? "bg-blue"]}>
 									<Image src={c.image} alt={studentComment.avatarAlt} class="aspect-square h-full w-auto rounded-full object-cover" />
 
-									<p class="text-[1.5rem] leading-[100%] font-bold text-white">{c.name}</p>
+									<p class:list={["text-2xl leading-[100%] font-bold", commentTextColorClassMap[c.color] ?? "text-white"]}>{c.name}</p>
 
 									<div />
 								</div>
 
-								<p class="text-background p-6 text-left text-[1rem] leading-[133%]">{c.comment}</p>
+								<p class="text-background p-6 text-left text-base leading-[133%]">{c.comment}</p>
 							</button>
 						))
 					}
@@ -109,7 +118,7 @@ const videos = studentComment.video.map(video => {
 		<div class="marquee-track flex w-max" data-video-marquee-track>
 			{
 				[0, 1, 2].map(groupIndex => (
-					<div class="marquee-group flex shrink-0 gap-4 pr-4" data-marquee-group aria-hidden={groupIndex > 0 ? "true" : undefined}>
+					<div class="marquee-group flex shrink-0 gap-4 pr-4" data-marquee-group aria-hidden={groupIndex > 0 ? "true" : undefined} inert={groupIndex > 0 ? true : undefined}>
 						{videos.map(v => (
 							<button
 								type="button"

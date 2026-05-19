@@ -52,14 +52,7 @@ const stats = aboutSitconCamp.stats as Stat[];
 			{
 				stats.map(stat => (
 					<article class="card-stat @container">
-						<Image
-							src={imgMap[stat.img]}
-							alt=""
-							class="absolute inset-0 h-full w-full object-cover object-[50%_0%] opacity-70"
-							loading="lazy"
-							decoding="async"
-							aria-hidden="true"
-						/>
+						<Image src={imgMap[stat.img]} alt="" class="absolute inset-0 h-full w-full object-cover object-[50%_0%] opacity-70" loading="lazy" decoding="async" aria-hidden="true" />
 						<div class="pointer-events-none absolute inset-0 bg-linear-to-t from-black/90 to-transparent to-60%" />
 
 						<div class="absolute bottom-0 left-0 flex h-full w-full items-end justify-center px-[4cqi] pb-[10cqi] text-white">

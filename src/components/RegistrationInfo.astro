@@ -9,13 +9,6 @@ import DateLine from "@/components/DateLine.astro";
 
 const { registration } = homeData;
 const { eventInfo } = registration;
-const pricingColorClassMap: Record<string, string> = {
-	orange: "text-orange",
-	"primary-blue": "text-primary-blue",
-	"soft-blue": "text-soft-blue",
-	"sky-blue": "text-sky-blue",
-	"dark-green": "text-dark-green"
-};
 
 const mdRenderer = new MarkdownIt({
 	html: false,
@@ -37,29 +30,29 @@ const renderedNotice = mdRenderer.render(registration.noticeMarkdown);
 		</div>
 
 		<div
-			class="bg-soft-blue text-background relative mt-6 grid w-full overflow-hidden rounded-[1.75rem_0] sm:mt-10 sm:rounded-[2.5rem_0] lg:mt-16 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.48fr)] lg:rounded-[4rem_0]"
+			class="bg-soft-blue text-foreground relative mt-6 grid w-full overflow-hidden rounded-[1.75rem_0] sm:mt-10 sm:rounded-[2.5rem_0] lg:mt-16 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,0.48fr)] lg:rounded-[4rem_0]"
 		>
 			<MapPinIcon class="text-background/15 pointer-events-none absolute -right-8 -bottom-14 h-auto w-40 rotate-[-10deg] sm:w-56 lg:w-72" aria-hidden="true" />
 
 			<div class="relative z-10 flex flex-col gap-4 p-5 sm:p-8 lg:p-14">
-				<span class="text-lg leading-none font-bold opacity-70">{eventInfo.venueLabel}</span>
+				<span class="text-lg leading-none font-bold opacity-90">{eventInfo.venueLabel}</span>
 				<div class="flex flex-col gap-4 sm:flex-row sm:items-center">
 					<span class="bg-background text-soft-blue flex size-13 shrink-0 items-center justify-center rounded-full sm:size-16 lg:size-20">
 						<MapPinIcon class="h-[52%] w-[52%]" aria-hidden="true" />
 					</span>
 					<div class="flex min-w-0 flex-col gap-2">
 						<h3 class="text-4xl leading-[120%] font-extrabold sm:text-5xl lg:text-[3.5rem]">{eventInfo.venueName}</h3>
-						<p class="text-background/80 text-lg leading-[150%] font-bold lg:text-[1.35rem]">{eventInfo.venueDetail}</p>
+						<p class="text-foreground/80 text-lg leading-[150%] font-bold lg:text-[1.35rem]">{eventInfo.venueDetail}</p>
 					</div>
 				</div>
 			</div>
 
 			<div class="bg-background text-foreground border-foreground/25 relative z-10 flex flex-col justify-center border-t-4 p-5 sm:p-7 lg:border-t-0 lg:border-l-4 lg:p-9">
 				<div class="flex items-center gap-3">
-					<span class="bg-green flex size-12 shrink-0 items-center justify-center rounded-full sm:size-14 lg:size-[3.75rem]">
+					<span class="bg-green flex size-12 shrink-0 items-center justify-center rounded-full sm:size-14 lg:size-15">
 						<CalendarDaysIcon class="text-foreground h-[54%] w-[54%]" aria-hidden="true" />
 					</span>
-					<span class="text-foreground/60 text-lg leading-none font-bold">{eventInfo.dateLabel}</span>
+					<span class="text-foreground/70 text-lg leading-none font-bold">{eventInfo.dateLabel}</span>
 				</div>
 				<strong class="mt-5 text-3xl leading-[120%] font-extrabold sm:text-4xl lg:text-[2.5rem]">{eventInfo.dateRange}</strong>
 				<span class="text-foreground/70 mt-2 text-lg leading-[150%] font-bold lg:text-xl">{eventInfo.dateNote}</span>
@@ -71,15 +64,15 @@ const renderedNotice = mdRenderer.render(registration.noticeMarkdown);
 		<div class="mt-6 flex w-full flex-col items-start sm:mt-10 lg:mt-16 lg:flex-row">
 			<dl class="flex w-full flex-col items-start lg:flex-691">
 				{
-					registration.pricingRows.map(({ label, color, price, roundedStart, roundedEnd }) => (
+					registration.pricingRows.map(({ label, price, roundedStart, roundedEnd }) => (
 						<div
 							class:list={[
-								"bg-background grid h-[4.5rem] w-full grid-cols-2 items-center border-y border-black px-[9.262%] sm:h-20 lg:h-[5.125rem]",
+								"bg-background grid h-18 w-full grid-cols-2 items-center border-y border-black px-[9.262%] sm:h-20 lg:h-20.5",
 								roundedStart && "rounded-tl-[1.75rem] sm:rounded-tl-[2.5rem] lg:rounded-tl-[4rem]",
 								roundedEnd && "rounded-br-[1.75rem] sm:rounded-br-[2.5rem] lg:rounded-br-[4rem]"
 							]}
 						>
-							<dt class:list={["text-center text-2xl leading-[150%] font-extrabold sm:text-[1.75rem] lg:text-[2rem]", pricingColorClassMap[color] ?? "text-orange"]}>{label}</dt>
+							<dt class="text-foreground text-center text-2xl leading-[150%] font-extrabold sm:text-[1.75rem] lg:text-[2rem]">{label}</dt>
 							<dd class="text-center text-2xl leading-[150%] font-extrabold text-black sm:text-[1.75rem] lg:text-[2rem]">{price}</dd>
 						</div>
 					))
@@ -93,13 +86,13 @@ const renderedNotice = mdRenderer.render(registration.noticeMarkdown);
 						href={registration.ctaBrochure.href}
 						target="_blank"
 						rel="noreferrer"
-						class="bg-background text-foreground flex h-14 w-[44vw] max-w-[13rem] items-center justify-center rounded-2xl px-3 text-xl leading-[150%] font-extrabold whitespace-nowrap shadow-[0.25rem_0.25rem_0_0_var(--color-orange)] sm:h-16 sm:w-auto sm:px-4 sm:text-2xl lg:h-[4.5rem] lg:text-[2.125rem] lg:shadow-[0.5rem_0.5rem_0_0_var(--color-orange)]"
+						class="bg-background text-foreground flex h-14 w-[44vw] max-w-52 items-center justify-center rounded-2xl px-3 text-xl leading-[150%] font-extrabold whitespace-nowrap shadow-[0.25rem_0.25rem_0_0_var(--color-orange)] sm:h-16 sm:w-auto sm:px-4 sm:text-2xl lg:h-18 lg:text-[2.125rem] lg:shadow-[0.5rem_0.5rem_0_0_var(--color-orange)]"
 					>
 						{registration.ctaBrochure.label}
 					</a>
 					<a
 						href={registration.cta.href}
-						class="bg-green flex h-14 w-[44vw] max-w-[13rem] items-center justify-center rounded-2xl px-3 text-xl leading-[150%] font-extrabold whitespace-nowrap text-white shadow-[0.25rem_0.25rem_0_0_var(--color-orange)] sm:h-16 sm:w-auto sm:px-4 sm:text-2xl lg:h-[4.5rem] lg:text-[2.125rem] lg:shadow-[0.5rem_0.5rem_0_0_var(--color-orange)]"
+						class="bg-green text-foreground flex h-14 w-[44vw] max-w-52 items-center justify-center rounded-2xl px-3 text-xl leading-[150%] font-extrabold whitespace-nowrap shadow-[0.25rem_0.25rem_0_0_var(--color-orange)] sm:h-16 sm:w-auto sm:px-4 sm:text-2xl lg:h-18 lg:text-[2.125rem] lg:shadow-[0.5rem_0.5rem_0_0_var(--color-orange)]"
 					>
 						{registration.cta.label}
 					</a>

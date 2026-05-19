@@ -180,7 +180,12 @@ const avatarImages = import.meta.glob<{ default: ImageMetadata }>("../assets/tea
 					</a>
 				</div>
 			</section>
-			<button type="button" class="bg-danger absolute top-0 right-0 hidden h-12 w-16 items-center justify-center rounded-bl-4xl transition-all duration-300 hover:scale-105 md:flex" id="layout-cancel" aria-label={modal.closeLabel}>
+			<button
+				type="button"
+				class="bg-danger absolute top-0 right-0 hidden h-12 w-16 items-center justify-center rounded-bl-4xl transition-all duration-300 hover:scale-105 md:flex"
+				id="layout-cancel"
+				aria-label={modal.closeLabel}
+			>
 				<LucideX class="text-foreground h-10 w-10" aria-hidden="true" />
 			</button>
 		</div>
@@ -194,7 +199,9 @@ const avatarImages = import.meta.glob<{ default: ImageMetadata }>("../assets/tea
 		{
 			teamGroups.map((group, groupIndex) => (
 				<section class="my-4 mt-12 lg:mt-16" aria-labelledby={`team-group-${groupIndex}`}>
-					<h3 id={`team-group-${groupIndex}`} class="text-4xl font-bold text-black">{group.name}</h3>
+					<h3 id={`team-group-${groupIndex}`} class="text-4xl font-bold text-black">
+						{group.name}
+					</h3>
 					{group.description && <p class="text-foreground/70 mt-3 text-lg leading-[1.7] font-bold">{group.description}</p>}
 
 					<div class="my-4 grid h-fit w-full grid-cols-[repeat(auto-fill,minmax(9.375rem,1fr))] justify-items-center gap-[clamp(1rem,20vw,2rem)]">
