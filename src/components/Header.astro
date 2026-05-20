@@ -246,12 +246,8 @@ const { header } = layoutData;
 
 	const normalizePath = (path: string) => path.replace(/\/$/, "") || "/";
 
-	const updateHeaderState = () => {
+	const updateActiveNav = () => {
 		const current = normalizePath(location.pathname);
-
-		if (siteHeader) {
-			siteHeader.classList.toggle("is-visible", current !== "/2026");
-		}
 
 		document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]").forEach(link => {
 			const href = link.dataset.href;
@@ -260,11 +256,9 @@ const { header } = layoutData;
 				return;
 			}
 
-			const isAnchor = href.includes("#");
-
 			let active = false;
 
-			if (!isAnchor) {
+			if (!href.includes("#")) {
 				const nav = normalizePath(new URL(href, location.origin).pathname);
 
 				active = nav === "/2026" ? current === nav : current === nav || current.startsWith(`${nav}/`);
@@ -282,9 +276,9 @@ const { header } = layoutData;
 		});
 	};
 
-	updateHeaderState();
+	updateActiveNav();
 
-	document.addEventListener("astro:page-load", updateHeaderState);
+	document.addEventListener("astro:page-load", updateActiveNav);
 </script>
 
 <style>
