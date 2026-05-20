@@ -5,28 +5,9 @@ import SitconCampLogo from "@/assets/brand/sitcon-camp-logo.svg";
 import layoutData from "@/data/layout.json";
 
 const { header } = layoutData;
-const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
-const getNavPath = (href: string) => new URL(href, Astro.site ?? "https://sitcon.camp").pathname.replace(/\/$/, "") || "/";
-const isNavItemActive = (href: string) => {
-	if (href.includes("#")) {
-		return false;
-	}
-
-	const navPath = getNavPath(href);
-
-	if (navPath === "/2026/schedule") {
-		return false;
-	}
-
-	if (navPath === "/2026") {
-		return currentPath === navPath;
-	}
-
-	return currentPath === navPath || currentPath.startsWith(`${navPath}/`);
-};
 ---
 
-<header class:list={["site-header", { "is-visible": currentPath !== "/2026" }]} data-site-header data-astro-transition-persist="site-header" aria-label={header.ariaLabel}>
+<header class="site-header" data-site-header data-astro-transition-persist="site-header" aria-label={header.ariaLabel}>
 	<a class="site-header__brand" href={header.brand.href} aria-label={header.brand.ariaLabel}>
 		<img class="site-header__logo" src={SitconCampLogo.src} width={SitconCampLogo.width} height={SitconCampLogo.height} alt={header.brand.logoAlt} />
 	</a>
@@ -34,14 +15,16 @@ const isNavItemActive = (href: string) => {
 	<nav class="site-header__nav" aria-label={header.navAriaLabel}>
 		{
 			header.navItems.map(item => (
-				<a class:list={["site-header__link", { "site-header__link--active": isNavItemActive(item.href) }]} href={item.href} aria-current={isNavItemActive(item.href) ? "page" : undefined}>
+				<a class="site-header__link" data-nav-link data-href={item.href} href={item.href}>
 					{item.label}
 				</a>
 			))
 		}
 	</nav>
 
-	<a class="site-header__cta" href={header.cta.href}>{header.cta.label}</a>
+	<a class="site-header__cta" href={header.cta.href}>
+		{header.cta.label}
+	</a>
 
 	<details class="site-header__mobile-menu" data-mobile-menu>
 		<summary
@@ -54,19 +37,16 @@ const isNavItemActive = (href: string) => {
 		>
 			<span class="site-header__mobile-icon" aria-hidden="true">
 				<Menu class="site-header__mobile-icon-glyph site-header__mobile-icon-glyph--menu" width={30} height={30} stroke-width={3} />
+
 				<X class="site-header__mobile-icon-glyph site-header__mobile-icon-glyph--close" width={30} height={30} stroke-width={3} />
 			</span>
 		</summary>
+
 		<div class="site-header__mobile-panel" data-mobile-panel>
 			<nav class="site-header__mobile-nav" aria-label={header.navAriaLabel}>
 				{
 					header.navItems.map(item => (
-						<a
-							class:list={["site-header__mobile-link", { "site-header__mobile-link--active": isNavItemActive(item.href) }]}
-							data-mobile-menu-link
-							href={item.href}
-							aria-current={isNavItemActive(item.href) ? "page" : undefined}
-						>
+						<a class="site-header__mobile-link" data-nav-link data-href={item.href} data-mobile-menu-link href={item.href}>
 							{item.label}
 						</a>
 					))
@@ -263,6 +243,42 @@ const isNavItemActive = (href: string) => {
 	document.addEventListener("astro:before-swap", () => {
 		void closeMobileMenu();
 	});
+
+	const normalizePath = (path: string) => path.replace(/\/$/, "") || "/";
+
+	const updateActiveNav = () => {
+		const current = normalizePath(location.pathname);
+
+		document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]").forEach(link => {
+			const href = link.dataset.href;
+
+			if (!href) {
+				return;
+			}
+
+			let active = false;
+
+			if (!href.includes("#")) {
+				const nav = normalizePath(new URL(href, location.origin).pathname);
+
+				active = nav === "/2026" ? current === nav : current === nav || current.startsWith(`${nav}/`);
+			}
+
+			link.classList.toggle("site-header__link--active", link.classList.contains("site-header__link") && active);
+
+			link.classList.toggle("site-header__mobile-link--active", link.classList.contains("site-header__mobile-link") && active);
+
+			if (active) {
+				link.setAttribute("aria-current", "page");
+			} else {
+				link.removeAttribute("aria-current");
+			}
+		});
+	};
+
+	updateActiveNav();
+
+	document.addEventListener("astro:page-load", updateActiveNav);
 </script>
 
 <style>
