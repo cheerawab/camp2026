@@ -88,9 +88,11 @@ export const scheduleEvents: ScheduleEvent[] = [
 	},
 	{
 		id: "agent-battle",
-		name: "讓你的 Agent 跟別人的戰鬥吧！",
-		summary: "神秘活動...",
-		description: ["即將揭曉..."],
+		name: "讓你的 agent 上場戰鬥吧",
+		summary: "透過程式實作專屬的策略代理人，並在賽局中與夥伴互相切磋學習",
+		description: [
+			"在一個數位陣營攻防遊戲中，學員將挑戰透過撰寫程式碼來設計自己的專屬 agent。從防禦佈陣到攻擊路徑，每個決策都將由學員設計的程式碼自動執行。在這場考驗邏輯思考與策略規劃的實作活動中，學員將體會演算法的實際運作、觀察不同的解題思路並在嘗試中迭代出最佳的策略，打遍天下無敵手。"
+		],
 		category: "活動",
 		isInteractive: true,
 		image: {
