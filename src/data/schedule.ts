@@ -248,7 +248,7 @@ export const scheduleEvents: ScheduleEvent[] = [
 	},
 	{
 		id: "sigs-ak",
-		name: "宵夜沙龍",
+		name: "爐邊夜談",
 		summary: "燈火微暗、宵夜飄香，屬於資訊人的深夜交流正式開張。在這裡沒有講師與學生，只有隨意走動、自由入座，圍繞著技術本質與一線秘辛的深夜閒聊。",
 		description: [
 			"白天的課聽不夠？拉張椅子，配著宵夜，我們繼續聊。",
