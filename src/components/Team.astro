@@ -14,7 +14,7 @@ const avatarImages = import.meta.glob<{ default: ImageMetadata }>("../assets/tea
 <script>
 	document.addEventListener("astro:page-load", () => {
 		document.querySelectorAll<HTMLElement>("[data-member-id]").forEach(async el => {
-			el.addEventListener("mousedown", async () => {
+			const openMemberDialog = async () => {
 				//Fetching elements
 				const overlay = document.getElementById("overlay");
 				const closeBtn = document.getElementById("layout-cancel");
@@ -52,7 +52,7 @@ const avatarImages = import.meta.glob<{ default: ImageMetadata }>("../assets/tea
 					linkEle.hidden = true;
 				}
 
-				avatarEle.src = (el as HTMLImageElement).src;
+				avatarEle.src = (el as HTMLImageElement).currentSrc || (el as HTMLImageElement).src;
 
 				//Instant set styling
 				const newAvatarRect = avatarEle.getBoundingClientRect();
@@ -89,8 +89,13 @@ const avatarImages = import.meta.glob<{ default: ImageMetadata }>("../assets/tea
 				//Closing Logic
 				closeBtn.addEventListener("click", closeAnimation, { once: true });
 				closeSmBtn.addEventListener("click", closeAnimation, { once: true });
-				overlay.addEventListener("click", closeAnimation, { once: true });
+				overlay.addEventListener("click", onOverlayClick, { once: true });
 				document.addEventListener("keydown", onEsc, { once: true });
+
+				function onOverlayClick(e: MouseEvent) {
+					if (e.target === overlay) closeAnimation();
+					else overlay?.addEventListener("click", onOverlayClick, { once: true });
+				}
 
 				function onEsc(e: KeyboardEvent) {
 					if (e.key === "Escape") closeAnimation();
@@ -134,46 +139,69 @@ const avatarImages = import.meta.glob<{ default: ImageMetadata }>("../assets/tea
 						});
 					});
 				}
+			};
+
+			el.addEventListener("mousedown", () => {
+				void openMemberDialog();
+			});
+			el.addEventListener("keydown", e => {
+				if (e.key !== "Enter" && e.key !== " ") return;
+				e.preventDefault();
+				void openMemberDialog();
 			});
 		});
 	}); // end astro:page-load
 </script>
 
-<div id="team" class="bg-background h-fit w-full pt-[clamp(8rem,10vw,9rem)] pb-12">
-	<div class="fixed inset-0 -z-10 flex h-full w-full flex-col items-start justify-center bg-black/30 px-8 opacity-0 transition-all duration-300 md:items-center" id="overlay">
+<section id="team" class="bg-background h-fit w-full pt-[clamp(8rem,10vw,9rem)] pb-12" aria-labelledby="team-title">
+	<div
+		class="fixed inset-0 -z-10 flex h-full w-full flex-col items-start justify-center bg-black/30 px-8 opacity-0 transition-all duration-300 md:items-center"
+		id="overlay"
+		role="dialog"
+		aria-modal="true"
+		aria-labelledby="layout-name"
+	>
 		<div class="bg-background relative mt-24 h-fit w-full overflow-hidden rounded-4xl p-8 md:max-w-5xl md:p-16 lg:h-98 lg:p-24">
 			<section class="row flex h-full w-full flex-col justify-start gap-4 md:flex-row md:gap-12">
 				<Image
 					src={modal.defaultAvatarUrl}
-					alt={modal.avatarAlt}
+					alt=""
 					width={200}
 					height={200}
 					class="border-foreground mx-auto h-37.5 w-37.5 cursor-pointer rounded-xl border-4 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_2px_var(--color-soft-blue)] md:h-50 md:w-50"
 					id="layout-avatar"
+					aria-hidden="true"
 				/>
 				<div class="flex h-full w-full min-w-0 flex-col justify-between">
 					<h2 class="mx-auto text-3xl font-bold md:mx-0 md:text-6xl" id="layout-name">{modal.namePlaceholder}</h2>
 					<p class="text-foreground my-4 text-lg font-bold" id="layout-des">{modal.descriptionPlaceholder}</p>
-					<a class="text-blue mt-auto block truncate text-lg font-bold underline underline-offset-3" id="layout-link" target="_blank" rel="noopener noreferrer" hidden>
+					<a class="text-blue mt-auto block truncate text-lg font-bold underline underline-offset-3" id="layout-link" href="#" target="_blank" rel="noopener noreferrer" hidden>
 						{modal.linkPlaceholder}
 					</a>
 				</div>
 			</section>
-			<div class="bg-danger absolute top-0 right-0 hidden h-12 w-16 items-center justify-center rounded-bl-4xl transition-all duration-300 hover:scale-105 md:flex" id="layout-cancel">
-				<LucideX class="text-foreground h-10 w-10" />
-			</div>
+			<button
+				type="button"
+				class="bg-danger absolute top-0 right-0 hidden h-12 w-16 items-center justify-center rounded-bl-4xl transition-all duration-300 hover:scale-105 md:flex"
+				id="layout-cancel"
+				aria-label={modal.closeLabel}
+			>
+				<LucideX class="text-foreground h-10 w-10" aria-hidden="true" />
+			</button>
 		</div>
-		<div class="text-foreground bg-danger-soft visible mt-4 flex h-16 w-full cursor-pointer items-center justify-center rounded-full font-bold md:hidden" id="layout-cancel-sm">
+		<button type="button" class="text-foreground bg-danger-soft visible mt-4 flex h-16 w-full cursor-pointer items-center justify-center rounded-full font-bold md:hidden" id="layout-cancel-sm">
 			<p class="text-3xl font-bold">{modal.closeLabel}</p>
-		</div>
+		</button>
 	</div>
 
 	<section class="site-container">
-		<h2 class="bg-green h-fit w-fit p-3 text-5xl font-bold text-black">{teamContent.title}</h2>
+		<h2 id="team-title" class="bg-green h-fit w-fit p-3 text-5xl font-bold text-black">{teamContent.title}</h2>
 		{
-			teamGroups.map(group => (
-				<section class="my-4 mt-12 lg:mt-16">
-					<h2 class="text-4xl font-bold text-black">{group.name}</h2>
+			teamGroups.map((group, groupIndex) => (
+				<section class="my-4 mt-12 lg:mt-16" aria-labelledby={`team-group-${groupIndex}`}>
+					<h3 id={`team-group-${groupIndex}`} class="text-4xl font-bold text-black">
+						{group.name}
+					</h3>
 					{group.description && <p class="text-foreground/70 mt-3 text-lg leading-[1.7] font-bold">{group.description}</p>}
 
 					<div class="my-4 grid h-fit w-full grid-cols-[repeat(auto-fill,minmax(9.375rem,1fr))] justify-items-center gap-[clamp(1rem,20vw,2rem)]">
@@ -187,6 +215,9 @@ const avatarImages = import.meta.glob<{ default: ImageMetadata }>("../assets/tea
 									class={`bg-background border-foreground h-37.5 w-37.5 flex-none cursor-pointer rounded-xl border-4 object-cover transition-all duration-300 hover:translate-x-0.5 hover:translate-y-0.5 ${data.description || data.avatarLink ? "shadow-[4px_4px_0_2px_var(--color-sky-400)] hover:shadow-[2px_2px_0_2px_var(--color-sky-400)]" : "shadow-[4px_4px_0_2px_var(--color-soft-blue)] hover:shadow-[2px_2px_0_2px_var(--color-soft-blue)]"}`}
 									data-member-id={`${group.name}-${data.name}`}
 									data-member={JSON.stringify({ name: data.name, description: data.description, avatarLink: data.avatarLink })}
+									role="button"
+									tabindex="0"
+									aria-label={`查看 ${data.name} 的團隊成員介紹`}
 								/>
 								<div class="hidden h-37.5 w-37.5" id={`b-${group.name}-${data.name}`} />
 								<div class="mt-4 flex h-fit w-fit min-w-37.5 items-center justify-between gap-2">
@@ -202,4 +233,4 @@ const avatarImages = import.meta.glob<{ default: ImageMetadata }>("../assets/tea
 			))
 		}
 	</section>
-</div>
+</section>

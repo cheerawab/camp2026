@@ -30,10 +30,10 @@ const renderedNotice = mdRenderer.render(registration.noticeMarkdown);
 	<svg id="reg-transition" viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" class="block w-full" aria-hidden="true"></svg>
 </div>
 
-<section id="registration-info" class="bg-foreground py-6 text-white sm:py-10 lg:py-16">
+<section id="registration-info" class="bg-foreground py-6 text-white sm:py-10 lg:py-16" aria-labelledby="registration-info-title">
 	<div class="site-container">
 		<div class="bg-green flex w-fit items-center justify-center gap-2.5 p-2.5">
-			<span class="text-foreground text-3xl leading-none font-bold sm:text-4xl lg:text-[2.5rem]">{registration.sectionTitle}</span>
+			<h2 id="registration-info-title" class="text-foreground text-3xl leading-none font-bold sm:text-4xl lg:text-[2.5rem]">{registration.sectionTitle}</h2>
 		</div>
 
 		<div
@@ -56,7 +56,7 @@ const renderedNotice = mdRenderer.render(registration.noticeMarkdown);
 
 			<div class="bg-background text-foreground border-foreground/25 relative z-10 flex flex-col justify-center border-t-4 p-5 sm:p-7 lg:border-t-0 lg:border-l-4 lg:p-9">
 				<div class="flex items-center gap-3">
-					<span class="bg-green flex size-12 shrink-0 items-center justify-center rounded-full sm:size-14 lg:size-[3.75rem]">
+					<span class="bg-green flex size-12 shrink-0 items-center justify-center rounded-full sm:size-14 lg:size-15">
 						<CalendarDaysIcon class="text-foreground h-[54%] w-[54%]" aria-hidden="true" />
 					</span>
 					<span class="text-foreground/60 text-lg leading-none font-bold">{eventInfo.dateLabel}</span>
@@ -69,22 +69,22 @@ const renderedNotice = mdRenderer.render(registration.noticeMarkdown);
 		<DateLine variant="c" />
 
 		<div class="mt-6 flex w-full flex-col items-start sm:mt-10 lg:mt-16 lg:flex-row">
-			<div class="flex w-full flex-col items-start lg:flex-691">
+			<dl class="flex w-full flex-col items-start lg:flex-691">
 				{
 					registration.pricingRows.map(({ label, color, price, roundedStart, roundedEnd }) => (
 						<div
 							class:list={[
-								"bg-background grid h-[4.5rem] w-full grid-cols-2 items-center border-y border-black px-[9.262%] sm:h-20 lg:h-[5.125rem]",
+								"bg-background grid h-18 w-full grid-cols-2 items-center border-y border-black px-[9.262%] sm:h-20 lg:h-20.5",
 								roundedStart && "rounded-tl-[1.75rem] sm:rounded-tl-[2.5rem] lg:rounded-tl-[4rem]",
 								roundedEnd && "rounded-br-[1.75rem] sm:rounded-br-[2.5rem] lg:rounded-br-[4rem]"
 							]}
 						>
-							<span class:list={["text-center text-2xl leading-[150%] font-extrabold sm:text-[1.75rem] lg:text-[2rem]", pricingColorClassMap[color] ?? "text-orange"]}>{label}</span>
-							<span class="text-center text-2xl leading-[150%] font-extrabold text-black sm:text-[1.75rem] lg:text-[2rem]">{price}</span>
+							<dt class:list={["text-center text-2xl leading-[150%] font-extrabold sm:text-[1.75rem] lg:text-[2rem]", pricingColorClassMap[color] ?? "text-orange"]}>{label}</dt>
+							<dd class="text-center text-2xl leading-[150%] font-extrabold text-black sm:text-[1.75rem] lg:text-[2rem]">{price}</dd>
 						</div>
 					))
 				}
-			</div>
+			</dl>
 
 			<div class="relative mt-6 aspect-565/410 w-full overflow-hidden sm:mt-10 lg:mt-0 lg:flex-565">
 				<Image src={registrationPhoto} alt={registration.photoAlt} class="absolute top-[6.585%] left-[7.434%] aspect-239/159 w-[85.133%] object-cover" loading="lazy" decoding="async" />
@@ -93,13 +93,13 @@ const renderedNotice = mdRenderer.render(registration.noticeMarkdown);
 						href={registration.ctaBrochure.href}
 						target="_blank"
 						rel="noreferrer"
-						class="bg-background text-foreground flex h-14 w-[44vw] max-w-[13rem] items-center justify-center rounded-2xl px-3 text-xl leading-[150%] font-extrabold whitespace-nowrap shadow-[0.25rem_0.25rem_0_0_var(--color-orange)] sm:h-16 sm:w-auto sm:px-4 sm:text-2xl lg:h-[4.5rem] lg:text-[2.125rem] lg:shadow-[0.5rem_0.5rem_0_0_var(--color-orange)]"
+						class="bg-background text-foreground flex h-14 w-[44vw] max-w-52 items-center justify-center rounded-2xl px-3 text-xl leading-[150%] font-extrabold whitespace-nowrap shadow-[0.25rem_0.25rem_0_0_var(--color-orange)] sm:h-16 sm:w-auto sm:px-4 sm:text-2xl lg:h-18 lg:text-[2.125rem] lg:shadow-[0.5rem_0.5rem_0_0_var(--color-orange)]"
 					>
 						{registration.ctaBrochure.label}
 					</a>
 					<a
 						href={registration.cta.href}
-						class="bg-green flex h-14 w-[44vw] max-w-[13rem] items-center justify-center rounded-2xl px-3 text-xl leading-[150%] font-extrabold whitespace-nowrap text-white shadow-[0.25rem_0.25rem_0_0_var(--color-orange)] sm:h-16 sm:w-auto sm:px-4 sm:text-2xl lg:h-[4.5rem] lg:text-[2.125rem] lg:shadow-[0.5rem_0.5rem_0_0_var(--color-orange)]"
+						class="bg-green flex h-14 w-[44vw] max-w-52 items-center justify-center rounded-2xl px-3 text-xl leading-[150%] font-extrabold whitespace-nowrap text-white shadow-[0.25rem_0.25rem_0_0_var(--color-orange)] sm:h-16 sm:w-auto sm:px-4 sm:text-2xl lg:h-18 lg:text-[2.125rem] lg:shadow-[0.5rem_0.5rem_0_0_var(--color-orange)]"
 					>
 						{registration.cta.label}
 					</a>
@@ -108,7 +108,7 @@ const renderedNotice = mdRenderer.render(registration.noticeMarkdown);
 		</div>
 
 		<div class="bg-orange mt-6 flex w-fit items-center justify-center gap-2.5 p-2.5 sm:mt-10 lg:mt-16">
-			<span class="text-foreground text-3xl leading-none font-bold sm:text-4xl lg:text-[2.5rem]">{registration.noticeTitle}</span>
+			<h3 class="text-foreground text-3xl leading-none font-bold sm:text-4xl lg:text-[2.5rem]">{registration.noticeTitle}</h3>
 		</div>
 
 		<div class="mt-6 text-lg leading-[170%] font-bold text-white [&_a]:underline [&_ol]:list-decimal [&_ol]:space-y-1 [&_ol]:pl-6" set:html={renderedNotice} />

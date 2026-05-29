@@ -67,12 +67,12 @@ const colorClassMap: Record<ActivityColor, { bar: string; ring: string; dot: str
 };
 ---
 
-<section class="bg-background text-foreground relative isolate overflow-hidden pt-[clamp(7rem,12vw,11rem)] pb-[clamp(4rem,8vw,7rem)]">
+<section class="bg-background text-foreground relative isolate overflow-hidden pt-[clamp(7rem,12vw,11rem)] pb-[clamp(4rem,8vw,7rem)]" aria-labelledby="events-held-title">
 	<div class="site-container">
 		<div class="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(21rem,0.95fr)] lg:items-end">
 			<header class="max-w-3xl">
 				<p class="bg-green mb-5 w-fit px-3 py-2 text-[clamp(1rem,1.7vw,1.5rem)] leading-none font-extrabold text-black">{eventsHeld.eyebrow}</p>
-				<h1 class="text-[clamp(2.5rem,6vw,5.75rem)] leading-[0.95] font-extrabold text-balance text-black">{eventsHeld.title}</h1>
+				<h1 id="events-held-title" class="text-[clamp(2.5rem,6vw,5.75rem)] leading-[0.95] font-extrabold text-balance text-black">{eventsHeld.title}</h1>
 				<p class="text-foreground/80 mt-6 text-[clamp(1.0625rem,1.55vw,1.35rem)] leading-[1.75] font-bold whitespace-pre-line">{eventsHeld.lead}</p>
 			</header>
 

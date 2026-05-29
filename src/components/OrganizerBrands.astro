@@ -35,14 +35,18 @@ const sections = aboutData.organizerBrands.sections
 	.map(({ tag, items }): [string, Org[]] => [tag, (items as unknown[]).filter(isOrg)])
 	.filter(([, list]) => list.length > 0)
 	.map(([tag, items]) => [tag, items.map(resolve)] as [string, ResolvedOrg[]]);
+
+const organizerBrandsLabel = "合作單位";
 ---
 
-<div class="bg-background py-20">
+<section class="bg-background py-20" aria-label={organizerBrandsLabel}>
 	<div class="site-container">
 		{
-			sections.map(([tag, items]) => (
-				<section class="mt-12 first:mt-0 md:mt-24 lg:mt-32">
-					<h2 class="mb-4 text-center text-3xl font-bold md:text-left md:text-4xl lg:text-[3rem]">{tag}</h2>
+			sections.map(([tag, items], sectionIndex) => (
+				<section class="mt-12 first:mt-0 md:mt-24 lg:mt-32" aria-labelledby={`organizer-brand-${sectionIndex}`}>
+					<h2 id={`organizer-brand-${sectionIndex}`} class="mb-4 text-center text-3xl font-bold md:text-left md:text-4xl lg:text-5xl">
+						{tag}
+					</h2>
 					<div class="flex flex-wrap items-center justify-center gap-8 gap-y-10 sm:gap-10 md:justify-start lg:gap-12">
 						{items.map(org => {
 							const logoClass = "h-full w-auto max-w-full object-contain";
@@ -55,4 +59,4 @@ const sections = aboutData.organizerBrands.sections
 			))
 		}
 	</div>
-</div>
+</section>

@@ -76,7 +76,7 @@ type FooterIcon = keyof typeof iconMap;
 
 									return Icon ? (
 										<a href={link.href} class:list={["icon-link", `link-hover-${section.variant}`]} aria-label={link.label}>
-											<Icon class="h-6 w-6" />
+											<Icon class="h-6 w-6" aria-hidden="true" />
 										</a>
 									) : null;
 								})}

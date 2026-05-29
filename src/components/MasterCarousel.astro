@@ -52,10 +52,10 @@ const getMemberImage = (member: Member) => {
 };
 ---
 
-<section class="bg-background overflow-hidden py-8" style="--gap: clamp(1.5rem, 4.2vw, 4rem); --heading-size: clamp(1.65rem, 3.25vw, 2.5rem)">
+<section class="bg-background overflow-hidden py-8" style="--gap: clamp(1.5rem, 4.2vw, 4rem); --heading-size: clamp(1.65rem, 3.25vw, 2.5rem)" aria-labelledby="master-carousel-title">
 	<div class="site-container">
 		<div class="bg-green flex w-fit items-center justify-center gap-2.5 p-2.5">
-			<h2 class="text-foreground leading-none font-bold" style="font-size: var(--heading-size)">{masterCarousel.sectionTitle}</h2>
+			<h2 id="master-carousel-title" class="text-foreground leading-none font-bold" style="font-size: var(--heading-size)">{masterCarousel.sectionTitle}</h2>
 		</div>
 	</div>
 
@@ -74,7 +74,7 @@ const getMemberImage = (member: Member) => {
 							const image = getMemberImage(member);
 
 							return (
-								<div class="member-card relative h-95 w-70 shrink-0 rounded-[2.5rem] text-left" data-member-id={member._memberId}>
+								<article class="member-card relative h-95 w-70 shrink-0 rounded-[2.5rem] text-left" data-member-id={member._memberId}>
 									<div class="relative h-full w-full overflow-hidden rounded-[2.5rem] border-r-6 border-b-6" style={`border-color: var(--color-${member.accent})`}>
 										<Image src={image} alt={member.name} class="h-full w-full object-cover" loading="eager" decoding="async" width={280} height={380} format="webp" />
 
@@ -86,7 +86,7 @@ const getMemberImage = (member: Member) => {
 											<p class="mt-1 text-sm font-medium text-white/75">{member.bio}</p>
 										</div>
 									</div>
-								</div>
+								</article>
 							);
 						})}
 					</div>
