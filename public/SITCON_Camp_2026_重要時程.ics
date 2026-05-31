@@ -34,30 +34,25 @@ TRIGGER:-P1D
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20260505T000000Z
-UID:sitcon-camp-2026-registration-deadline@sitcon.camp
-DTSTART;TZID=Asia/Taipei:20260531T235900
-DTEND;TZID=Asia/Taipei:20260601T000000
-SUMMARY:🚨 SITCON Camp 2026 一般報名截止
+DTSTAMP:20260601T000000Z
+UID:sitcon-camp-2026-rolling-review@sitcon.camp
+DTSTART;VALUE=DATE:20260601
+DTEND;VALUE=DATE:20260622
+SUMMARY:⚡ SITCON Camp 2026 即報即審 額滿為止
 URL:https://i.sitcon.org/reg-camp2026
-DESCRIPTION:SITCON Camp 2026 一般報名截止時間。\n報名連結：https://i.sitcon.org/reg-camp2026
-BEGIN:VALARM
-ACTION:DISPLAY
-DESCRIPTION:🚨 SITCON Camp 2026 一般報名截止
-TRIGGER:-P1D
-END:VALARM
+DESCRIPTION:SITCON Camp 2026 延長報名期間採即報即審，至 6/21 23:59 或額滿為止。\n報名連結：https://i.sitcon.org/reg-camp2026
 END:VEVENT
 BEGIN:VEVENT
-DTSTAMP:20260505T000000Z
-UID:sitcon-camp-2026-final-admission@sitcon.camp
-DTSTART;VALUE=DATE:20260604
-DTEND;VALUE=DATE:20260605
-SUMMARY:📣 SITCON Camp 2026 最終錄取名單公布
-URL:https://sitcon.camp/2026/
-DESCRIPTION:SITCON Camp 2026 最終錄取名單公布，請關注 SITCON 相關社群媒體及 Email 信箱。
+DTSTAMP:20260601T000000Z
+UID:sitcon-camp-2026-registration-deadline@sitcon.camp
+DTSTART;TZID=Asia/Taipei:20260621T235900
+DTEND;TZID=Asia/Taipei:20260622T000000
+SUMMARY:🚨 SITCON Camp 2026 延長報名截止
+URL:https://i.sitcon.org/reg-camp2026
+DESCRIPTION:SITCON Camp 2026 延長報名截止時間。採即報即審，額滿為止。\n報名連結：https://i.sitcon.org/reg-camp2026
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:📣 SITCON Camp 2026 最終錄取名單公布
+DESCRIPTION:🚨 SITCON Camp 2026 延長報名截止
 TRIGGER:-P1D
 END:VALARM
 END:VEVENT

@@ -8,17 +8,18 @@
 		{
 			"date": "05/24",
 			"label": "第一波錄取公布",
-			"iconKey": "alarm"
-		},
-		{
-			"date": "05/31 23:59",
-			"label": "一般報名截止",
-			"iconKey": "rocket"
-		},
-		{
-			"date": "06/04 前",
-			"label": "最終錄取名單公布",
 			"iconKey": "campaign"
+		},
+		{
+			"date": "即日起",
+			"label": "即報即審 額滿為止",
+			"iconKey": "alarm",
+			"highlight": true
+		},
+		{
+			"date": "06/21 23:59",
+			"label": "延長報名截止",
+			"iconKey": "rocket"
 		},
 		{
 			"date": "07/08 – 07/12",
