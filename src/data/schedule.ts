@@ -88,11 +88,9 @@ export const scheduleEvents: ScheduleEvent[] = [
 	},
 	{
 		id: "agent-battle",
-		name: "讓你的 agent 上場戰鬥吧",
-		summary: "透過程式實作專屬的策略代理人，並在賽局中與夥伴互相切磋學習",
-		description: [
-			"在一個數位陣營攻防遊戲中，學員將挑戰透過撰寫程式碼來設計自己的專屬 agent。從防禦佈陣到攻擊路徑，每個決策都將由學員設計的程式碼自動執行。在這場考驗邏輯思考與策略規劃的實作活動中，學員將體會演算法的實際運作、觀察不同的解題思路並在嘗試中迭代出最佳的策略，打遍天下無敵手。"
-		],
+		name: "讓你的 Agent 跟別人的戰鬥吧！",
+		summary: "神秘活動...",
+		description: ["即將揭曉..."],
 		category: "活動",
 		isInteractive: true,
 		image: {
@@ -248,14 +246,10 @@ export const scheduleEvents: ScheduleEvent[] = [
 	},
 	{
 		id: "sigs-ak",
-		name: "爐邊夜談",
-		summary: "燈火微暗、宵夜飄香，屬於資訊人的深夜交流正式開張。在這裡沒有講師與學生，只有隨意走動、自由入座，圍繞著技術本質與一線秘辛的深夜閒聊。",
+		name: "專題圓桌討論會",
+		summary: "課程內的知識固然重要，但課程外的經驗與想法不可忽略，來一場酣暢淋漓的思維討論與碰撞吧。",
 		description: [
-			"白天的課聽不夠？拉張椅子，配著宵夜，我們繼續聊。",
-			"",
-			"承襲以往大受好評的「視界咖啡館」精神，今年的爐邊夜談將帶來更深度的交流。當熱騰騰的宵夜香氣瀰漫，各領域的工作人員將化身各桌的「攤主」。想知道大型語言模型背後的對齊技術怎麼做？好奇業界一線的開發會面對什麼坑？又或者是想聽資安大神分享攻防秘辛？我們帶著你揭開資訊領域的面紗。",
-			"",
-			"在這裡，沒有台上的講師與台下的學生，只有一群對資訊充滿熱情的夥伴。隨意走動，自由入座，最真實的技術知識與靈感，將在深夜的閒聊與宵夜中誕生。 "
+			"除去軟體工程、資訊安全、人工智慧外，資訊領域還有許多不同的面向，學科之上也有很多經驗與心酸血淚史。在這個活動中，學員會分成不同的興趣小組，以專題為框架，並透過講師、隊輔的輔助，一同對一個領域深入討論與探索，了解資訊宇宙更全面的樣貌。"
 		],
 		category: "活動",
 		isInteractive: true,
@@ -283,6 +277,12 @@ export const scheduleEvents: ScheduleEvent[] = [
 		category: "總結"
 	},
 	{
+		id: "sleep",
+		name: "睡覺",
+		summary: "休息與整備時間。",
+		category: "生活"
+	},
+	{
 		id: "free-chat",
 		name: "回宿 / 自由交流",
 		summary: "和夥伴自由交流，延續課程與活動後的討論。",
@@ -306,7 +306,7 @@ export const scheduleDays: ScheduleDay[] = [
 	{
 		id: "day-one",
 		// Each title item is a wrap unit: keep words together, and only wrap between items when needed.
-		title: ["主線課程", "先導日"],
+		title: ["報到 / 破冰"],
 		subtitle: "Day 1",
 		type: "opening",
 		blocks: [
@@ -322,7 +322,7 @@ export const scheduleDays: ScheduleDay[] = [
 	},
 	{
 		id: "day-two",
-		title: ["軟體工程", "主題日"],
+		title: ["軟工"],
 		subtitle: "Day 2",
 		type: "software",
 		blocks: [
@@ -336,7 +336,7 @@ export const scheduleDays: ScheduleDay[] = [
 	},
 	{
 		id: "day-three",
-		title: ["人工智慧", "主題日"],
+		title: ["ML"],
 		subtitle: "Day 3",
 		type: "artificial-intelligence",
 		blocks: [
@@ -345,13 +345,13 @@ export const scheduleDays: ScheduleDay[] = [
 			{ startSlot: "13:00", span: 3, eventId: "ml-main" },
 			{ startSlot: "16:00", span: 2, eventId: "heisenbug" },
 			{ startSlot: "18:00", eventId: "dinner" },
-			{ startSlot: "19:00", eventId: "ml-main" },
-			{ startSlot: "20:00", span: 2, eventId: "free-chat" }
+			{ startSlot: "19:00", span: 2, eventId: "ml-main" },
+			{ startSlot: "21:00", eventId: "sigs-ak" }
 		]
 	},
 	{
 		id: "day-four",
-		title: ["資訊安全", "主題日"],
+		title: ["資安"],
 		subtitle: "Day 4",
 		type: "security",
 		blocks: [
@@ -366,15 +366,15 @@ export const scheduleDays: ScheduleDay[] = [
 	},
 	{
 		id: "day-five",
-		title: ["資訊交流", "探索日"],
+		title: ["收尾"],
 		subtitle: "Day 5",
 		type: "closing",
 		blocks: [
+			{ startSlot: "9:00", eventId: "sleep" },
 			{ startSlot: "10:00", eventId: "open-source-sharing" },
 			{ startSlot: "11:00", span: 2, eventId: "community-fair" },
 			{ startSlot: "13:00", span: 2, eventId: "vision-cafe" },
-			{ startSlot: "15:00", span: 2, eventId: "closing" },
-			{ startSlot: "17:00", span: 6, eventId: "return-home" }
+			{ startSlot: "15:00", span: 2, eventId: "closing" }
 		]
 	}
 ];
