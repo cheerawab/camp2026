@@ -88,13 +88,13 @@ export const scheduleEvents: ScheduleEvent[] = [
 		}
 	},
 	{
-		id: "agent-battle",
-		name: "讓你的 agent 上場戰鬥吧",
-		summary: "透過程式實作專屬的策略代理人，並在賽局中與夥伴互相切磋學習",
+		id: "web-system-intro",
+		name: "Web 系統入門",
+		summary: "認識瀏覽器、伺服器與資料庫如何串起一個網站。",
 		description: [
-			"在一個數位陣營攻防遊戲中，學員將挑戰透過撰寫程式碼來設計自己的專屬 agent。從防禦佈陣到攻擊路徑，每個決策都將由學員設計的程式碼自動執行。在這場考驗邏輯思考與策略規劃的實作活動中，學員將體會演算法的實際運作、觀察不同的解題思路並在嘗試中迭代出最佳的策略，打遍天下無敵手。"
+			"從打開網頁、登入帳號到送出表單，帶學員拆解瀏覽器、伺服器與資料庫之間的互動流程。課程會說明前端如何呈現畫面並送出請求、後端如何接收與處理資料，以及 HTTP、API、Cookie、Session 等概念如何串起常見的網站功能。"
 		],
-		category: "活動",
+		category: "啟程",
 		isInteractive: true,
 		image: {
 			key: "agent-battle",
@@ -318,7 +318,7 @@ export const scheduleDays: ScheduleDay[] = [
 			{ startSlot: "13:00", span: 2, eventId: "broad-course" },
 			{ startSlot: "15:00", span: 3, eventId: "quest" },
 			{ startSlot: "18:00", eventId: "dinner" },
-			{ startSlot: "19:00", span: 2, eventId: "agent-battle" },
+			{ startSlot: "19:00", span: 2, eventId: "web-system-intro" },
 			{ startSlot: "21:00", eventId: "sigs-ak" }
 		]
 	},
