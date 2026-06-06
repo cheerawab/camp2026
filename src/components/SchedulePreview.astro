@@ -174,7 +174,7 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 												index === 0 ? [<span class="schedule-day__title-entry">{entry}</span>] : [<wbr />, <span class="schedule-day__title-entry">{entry}</span>]
 											)}
 										</h2>
-										<p class="schedule-day__subtitle">{day.subtitle}</p>
+										<p class="schedule-day__subtitle">{day.subtitle}<span class="schedule-day__date"> - {day.date}</span></p>
 									</div>
 								</header>
 
@@ -632,6 +632,7 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 	}
 
 	.schedule-day__subtitle,
+	.schedule-day__date,
 	.schedule-day__title {
 		margin: 0;
 	}
@@ -643,6 +644,13 @@ const getRenderableBlocks = (day: ScheduleDay) => {
 		opacity: 0.82;
 	}
 
+	.schedule-day__date {
+		font-size: clamp(0.68rem, 0.8vw, 0.82rem);
+		font-weight: 800;
+		line-height: 1.2;
+		opacity: 0.7;
+	}
+	
 	.schedule-day__title {
 		font-size: clamp(1.25rem, 1.65vw, 1.72rem);
 		font-weight: 800;

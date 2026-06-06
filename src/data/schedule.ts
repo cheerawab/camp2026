@@ -21,6 +21,7 @@ export interface ScheduleBlock {
 export interface ScheduleDay {
 	id: string;
 	title: string[];
+	date: string;
 	subtitle: string;
 	type: ScheduleDayType;
 	blocks: ScheduleBlock[];
@@ -307,6 +308,7 @@ export const scheduleDays: ScheduleDay[] = [
 		id: "day-one",
 		// Each title item is a wrap unit: keep words together, and only wrap between items when needed.
 		title: ["主線課程", "先導日"],
+		date: "7/8",
 		subtitle: "Day 1",
 		type: "opening",
 		blocks: [
@@ -323,6 +325,7 @@ export const scheduleDays: ScheduleDay[] = [
 	{
 		id: "day-two",
 		title: ["軟體工程", "主題日"],
+		date: "7/9",
 		subtitle: "Day 2",
 		type: "software",
 		blocks: [
@@ -338,6 +341,7 @@ export const scheduleDays: ScheduleDay[] = [
 		id: "day-three",
 		title: ["人工智慧", "主題日"],
 		subtitle: "Day 3",
+		date: "7/10",
 		type: "artificial-intelligence",
 		blocks: [
 			{ startSlot: "9:00", span: 3, eventId: "ml-main" },
@@ -352,6 +356,7 @@ export const scheduleDays: ScheduleDay[] = [
 	{
 		id: "day-four",
 		title: ["資訊安全", "主題日"],
+		date: "7/11",
 		subtitle: "Day 4",
 		type: "security",
 		blocks: [
@@ -367,6 +372,7 @@ export const scheduleDays: ScheduleDay[] = [
 	{
 		id: "day-five",
 		title: ["資訊交流", "探索日"],
+		date: "7/12",
 		subtitle: "Day 5",
 		type: "closing",
 		blocks: [
