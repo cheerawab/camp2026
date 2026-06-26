@@ -18,6 +18,16 @@ export interface ScheduleBlock {
 	eventId: string;
 }
 
+export interface ScheduleSpeaker {
+	id: string;
+	name?: string;
+	description?: string;
+	avatar?: {
+		key?: string;
+		alt?: string;
+	};
+}
+
 export interface ScheduleDay {
 	id: string;
 	title: string[];
@@ -38,12 +48,26 @@ export interface ScheduleEvent {
 		key: string;
 		alt: string;
 	};
+	speakers?: ScheduleSpeaker["id"][];
 }
 
 export const scheduleMeta: ScheduleMeta = {
 	title: "活動日程",
 	description: "SITCON Camp 2026 將圍繞軟體工程、人工智慧與資訊安全三大主線展開，並穿插交流、實作與活動。"
 };
+
+export const scheduleSpeakers: ScheduleSpeaker[] = [
+	{
+		id: "william-mou",
+		name: "William Mou",
+		description:
+			"嗨，我是展佑！我的開發日常是跟電腦底層對話。曾在 Linux Foundation 的 WasmEdge 專案刻過 C/C++ API、在實驗室及 Homelab 建置虛擬機及 Overlay Network，近期在 SiFive 參與 RISC-V CPU 及 AI 加速器的晶片設計及性能最佳化。大學時最瘋狂的經歷是在清大超算隊伍設計 3KW 功耗限制的叢集，贏得兩座世界超級電腦冠軍（SCC22 & ASC20-21）回台灣。\n身為 2019 Camp 的學員，這次回來想和大家聊聊「被 AI 取代」的焦慮，分享資工系那些 Hardcore 的底層知識，如何成為你走過每次技術革命的心法。"
+	},
+	{
+		id: "chieh-ying-li",
+		name: "李杰穎"
+	}
+];
 
 export const scheduleEvents: ScheduleEvent[] = [
 	{
@@ -61,14 +85,19 @@ export const scheduleEvents: ScheduleEvent[] = [
 	{
 		id: "broad-course",
 		name: "廣度課程",
-		summary: "敬請期待...",
-		description: ["即將揭曉..."],
+		summary: "從應用層往下看底層系統與高效能運算，理解 AI 時代仍然重要的資工基礎。",
+		description: [
+			"當 LLM 幾秒鐘就能生成精美的 Web UI、AI 寫 Code 的速度遠超人類，你是否曾看著資工系厚重的「作業系統」、「計算機組織與結構」課本，懷疑起學這些底層理論的意義？這場廣度課程希望帶領已經具備基礎程式能力的你，把目光從喧囂的「應用層」往下切，直達整座資訊世界的地基——底層系統與高效能運算（HPC）。身為曾經坐在台下的 2019 Camp 學員，我想結合近年的實戰經驗，跟大家聊聊：",
+			"- 打破黑盒： 在超級電腦上跑動大型 AI 模型的背後，撐起算力奇蹟的從來不是魔法，而是作業系統與硬體架構的極致調度。那些讓你熬夜趕工的資工必修課，究竟在當代最前沿的技術裡扮演什麼角色？",
+			"- 造浪者的心法： 當寫出會動的 Code 門檻被無限拉低，我們該如何省思資工系帶給我們的思維方式，從單純的技術消費者，蛻變成參與下一次革命的貢獻者？"
+		],
 		category: "其他",
 		isInteractive: true,
 		image: {
 			key: "broad-course",
 			alt: "廣度課程活動現場"
-		}
+		},
+		speakers: ["william-mou", "chieh-ying-li"]
 	},
 	{
 		id: "quest",
