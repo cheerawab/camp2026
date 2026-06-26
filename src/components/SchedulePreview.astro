@@ -5,6 +5,7 @@ import Info from "~icons/lucide/info";
 import X from "~icons/lucide/x";
 import type { ScheduleBlock, ScheduleDay, ScheduleDayType, ScheduleEvent, ScheduleEventCategory, ScheduleSpeaker } from "@/data/schedule";
 import { scheduleDays, scheduleEvents, scheduleMeta, scheduleSlots, scheduleSpeakers } from "@/data/schedule";
+import { renderMarkdown } from "@/utils/markdown";
 
 const scheduleImageModules = import.meta.glob<{ default: ImageMetadata }>("../assets/schedule/*.{jpg,jpeg,png,webp}", { eager: true });
 const scheduleImages = new Map(
@@ -100,6 +101,15 @@ const hasEventDetails = (event: ScheduleEvent): boolean => {
 	const descriptionLines = event.description ?? [];
 	return Boolean(event.image?.key || descriptionLines.some(line => line.trim()) || getEventSpeakers(event).length > 0);
 };
+
+const descriptionLinesToMarkdown = (lines: string[]): string =>
+	lines.reduce((markdown, line) => {
+		const previousLine = markdown.split("\n").at(-1) ?? "";
+		const joinsList = /^[-*+]\s+/.test(line) && /^[-*+]\s+/.test(previousLine);
+		const separator = joinsList ? "\n" : "\n\n";
+
+		return markdown ? `${markdown}${separator}${line}` : line;
+	}, "");
 
 const getBlockSpan = (block: ScheduleBlock): number => {
 	const startIndex = scheduleSlotIndexMap.get(block.startSlot);
@@ -312,16 +322,7 @@ const interactiveScheduleEvents = scheduleEvents.filter(event => event.isInterac
 								<h2 id={`schedule-dialog-title-${event.id}`} class="schedule-dialog__title" tabindex="-1">
 									{event.name}
 								</h2>
-								{descriptionLines.some(line => line.trim()) && (
-									<p class="schedule-dialog__description">
-										{descriptionLines.map((line, index) => (
-											<>
-												{line}
-												{index < descriptionLines.length - 1 && <br />}
-											</>
-										))}
-									</p>
-								)}
+								{descriptionLines.some(line => line.trim()) && <div class="schedule-dialog__description" set:html={renderMarkdown(descriptionLinesToMarkdown(descriptionLines))} />}
 								{speakers.length > 0 && (
 									<section class="schedule-dialog__speakers" aria-label={`${event.name}講者`}>
 										{speakers.map(speaker => {
@@ -991,9 +992,9 @@ const interactiveScheduleEvents = scheduleEvents.filter(event => event.isInterac
 		box-sizing: border-box;
 		width: min(100%, 58rem);
 		max-width: 100%;
-		max-height: calc(100dvh - 2rem);
+		height: min(43rem, calc(100dvh - 4rem));
+		max-height: calc(100dvh - 4rem);
 		overflow: hidden;
-		overflow-y: auto;
 		background: var(--color-foreground);
 		border: 3px solid var(--color-background);
 		border-radius: 1.5rem;
@@ -1021,9 +1022,10 @@ const interactiveScheduleEvents = scheduleEvents.filter(event => event.isInterac
 	.schedule-dialog__content {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
 		gap: 1rem;
 		min-width: 0;
+		min-height: 0;
+		overflow-y: auto;
 		padding: clamp(1.5rem, 4vw, 3rem);
 	}
 
@@ -1042,6 +1044,59 @@ const interactiveScheduleEvents = scheduleEvents.filter(event => event.isInterac
 		font-size: clamp(1rem, 1.6vw, 1.18rem);
 		font-weight: 700;
 		line-height: 1.75;
+	}
+
+	.schedule-dialog__description :global(:first-child) {
+		margin-top: 0;
+	}
+
+	.schedule-dialog__description :global(:last-child) {
+		margin-bottom: 0;
+	}
+
+	.schedule-dialog__description :global(p) {
+		margin-block: 0.75rem;
+	}
+
+	.schedule-dialog__description :global(ul),
+	.schedule-dialog__description :global(ol) {
+		display: grid;
+		gap: 0.45rem;
+		margin-block: 0.85rem;
+		padding-inline-start: 0;
+		list-style: none;
+	}
+
+	.schedule-dialog__description :global(li) {
+		position: relative;
+		padding-inline-start: 1.35rem;
+	}
+
+	.schedule-dialog__description :global(li::before) {
+		position: absolute;
+		inset-block-start: 0.72em;
+		inset-inline-start: 0;
+		width: 0.46rem;
+		aspect-ratio: 1;
+		background: var(--color-orange);
+		border: 1px solid color-mix(in srgb, var(--color-background) 60%, transparent);
+		border-radius: 999rem;
+		box-shadow: 0.08rem 0.08rem 0 0 rgb(0 0 0 / 30%);
+		content: "";
+	}
+
+	.schedule-dialog__description :global(a) {
+		color: var(--color-sky-blue);
+		text-decoration: underline;
+		text-decoration-thickness: 0.1em;
+		text-underline-offset: 0.18em;
+	}
+
+	.schedule-dialog__description :global(code) {
+		padding: 0.08rem 0.3rem;
+		color: var(--color-background);
+		background: rgb(249 245 239 / 12%);
+		border-radius: 0.35rem;
 	}
 
 	.schedule-dialog__speakers {
@@ -1394,6 +1449,7 @@ const interactiveScheduleEvents = scheduleEvents.filter(event => event.isInterac
 		.schedule-dialog__panel {
 			width: 100%;
 			max-width: 32rem;
+			height: auto;
 			grid-template-columns: 1fr;
 			max-height: calc(100dvh - 2rem);
 			overflow-y: auto;
@@ -1406,6 +1462,7 @@ const interactiveScheduleEvents = scheduleEvents.filter(event => event.isInterac
 		}
 
 		.schedule-dialog__content {
+			overflow-y: visible;
 			padding: 1.25rem;
 		}
 	}
